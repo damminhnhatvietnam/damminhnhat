@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bơi An Toàn – Phòng chống đuối nước</title>
+<style>
+:root{--bg:#f2fbff;--card:#fff;--tx:#0b2a3c;--mu:#4b6b7d;--p:#0ea5e9;--p2:#38e0c4;--a:#ff6b4a;--g:#22c55e;--y:#ffc83d;--bd:#d5eef8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1e2b;--card:#12303f;--tx:#e8f6ff;--mu:#9bbccc;--bd:#1f4558}}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;font-family:'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--tx);line-height:1.55}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--card);border-bottom:2px solid var(--bd);display:flex;align-items:center;gap:10px;padding:8px 14px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:20px;color:var(--p);cursor:pointer;display:flex;gap:6px;align-items:center}
+nav{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+nav a{padding:6px 11px;border-radius:99px;color:var(--tx);text-decoration:none;font-weight:600;font-size:14px}
+nav a:hover,nav a.on{background:var(--p);color:#fff}
+.sos{background:var(--a);color:#fff;border:0;border-radius:99px;padding:8px 16px;font-weight:800;cursor:pointer;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 10px #ff6b4a33}}
+main{max-width:1050px;margin:auto;padding:16px}
+h1,h2,h3{line-height:1.2;margin:.4em 0}
+.hero{background:linear-gradient(160deg,#0ea5e9,#38e0c4);color:#fff;border-radius:28px;padding:34px 22px 80px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(26px,5vw,44px)}
+.waves{position:absolute;left:0;right:0;bottom:0;height:60px;background:repeating-radial-gradient(circle at 50% 100%,#ffffff55 0 14px,transparent 14px 28px);background-size:56px 60px;animation:wv 6s linear infinite}
+@keyframes wv{to{background-position:56px 0}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0}
+.stat{background:#ffffff2e;border-radius:18px;padding:12px;text-align:center}
+.stat b{font-size:34px;display:block}
+.float{display:flex;gap:10px;flex-wrap:wrap}
+.chip{background:#fff;color:#0b2a3c;border:0;border-radius:16px;padding:10px 14px;font-weight:700;cursor:pointer;animation:fl 3s ease-in-out infinite;font-size:15px}
+.chip:nth-child(2){animation-delay:.5s}.chip:nth-child(3){animation-delay:1s}
+@keyframes fl{50%{transform:translateY(-6px)}}
+#warn{margin-top:12px;font-weight:600;min-height:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:var(--card);border:2px solid var(--bd);border-radius:20px;padding:16px;cursor:pointer;transition:.2s;text-align:left;color:var(--tx);font:inherit}
+.card:hover{transform:translateY(-4px);border-color:var(--p);box-shadow:0 8px 20px #0ea5e922}
+.card .ic{font-size:38px}.card p{color:var(--mu);margin:4px 0 0;font-size:14px}
+.btn{background:var(--p);color:#fff;border:0;border-radius:12px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:15px}
+.btn.o{background:var(--a)}.btn.g{background:var(--g)}
+.sec{margin:26px 0}.sec h2{color:var(--p)}
+.tag{display:inline-block;background:var(--y);color:#533;border-radius:99px;padding:2px 10px;font-size:12px;font-weight:700}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.two{grid-template-columns:1fr}nav a{padding:5px 8px;font-size:13px}}
+.part{background:var(--card);border:2px dashed var(--p);border-radius:16px;padding:12px;margin-bottom:10px;cursor:pointer}
+.part .tx{display:none;color:var(--mu);margin-top:6px}.part.open{border-style:solid;background:#e6f7ff22}.part.open .tx{display:block}
+.q{background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:12px;margin-bottom:10px}
+.opt{display:inline-block;margin:6px 6px 0 0;padding:7px 14px;border-radius:10px;border:2px solid var(--p);background:none;color:var(--tx);cursor:pointer;font:inherit}
+.opt.ok{background:var(--g);border-color:var(--g);color:#fff}.opt.no{background:var(--a);border-color:var(--a);color:#fff}
+.ex{color:var(--mu);font-size:14px;margin-top:6px}
+.scene{position:relative;height:300px;border-radius:20px;overflow:hidden;border:2px solid var(--bd);user-select:none}
+.it{position:absolute;font-size:44px;cursor:pointer;background:none;border:0;transition:.2s}.it:hover{transform:scale(1.2)}
+.it.f{outline:4px solid var(--g);border-radius:50%;background:#22c55e44}
+.bar{height:16px;border-radius:9px;background:#e1eef4;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--g),var(--y),var(--a));transition:.5s}
+.slot{min-height:64px;border:3px dashed var(--p);border-radius:14px;padding:8px;text-align:center;cursor:pointer}
+.mascot{font-size:64px;transition:.3s;width:90px;height:90px;display:grid;place-items:center;background:var(--card);border:3px solid var(--p);border-radius:50%}
+#chat{height:280px;overflow:auto;background:var(--card);border:2px solid var(--bd);border-radius:16px;padding:10px}
+.m{margin:6px 0;padding:8px 12px;border-radius:14px;max-width:85%}.m.u{background:var(--p);color:#fff;margin-left:auto}.m.b{background:#e6f7ff;color:#0b2a3c}
+input[type=text]{flex:1;padding:10px;border-radius:12px;border:2px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;min-width:0}
+footer{text-align:center;color:var(--mu);padding:24px 14px;border-top:2px solid var(--bd);margin-top:30px;font-size:14px}
+.back{background:none;border:0;color:var(--p);font-weight:700;cursor:pointer;margin-bottom:6px;font-size:15px}
+.mtn{height:18px;background:#e1eef4;border-radius:9px;position:relative}.mtn i{position:absolute;top:-14px;font-size:30px;transition:.5s;font-style:normal}
+dialog{border:0;border-radius:20px;padding:22px;max-width:380px;background:var(--card);color:var(--tx)}
+/* A brighter, illustrated learning space that remains usable offline. */
+body{background:radial-gradient(ellipse at 12% 8%,#d9f7f3 0,transparent 28%),radial-gradient(ellipse at 90% 34%,#fff0d6 0,transparent 25%),var(--bg)}
+main{max-width:1160px;padding:22px}
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(260px,.85fr);align-items:center;gap:20px;min-height:360px;padding:34px;background:linear-gradient(125deg,#087ea4 0%,#08a6b2 55%,#28c5a5 100%);border-radius:24px;box-shadow:0 18px 45px #087ea426}
+.hero-copy{position:relative;z-index:1}.hero h1{max-width:680px;font-size:clamp(30px,4.5vw,48px);margin:0 0 12px}.hero p{max-width:620px;font-size:17px}.hero-art{width:100%;height:auto;max-height:300px;filter:drop-shadow(0 15px 15px #064e3b30)}
+.hero .stats{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px}.hero .stat{background:#ffffff24;border:1px solid #ffffff3d;border-radius:12px;text-align:left}.hero .stat:first-child{grid-column:span 2}.hero .stat b{font-size:20px;display:inline;margin-right:7px}.hero .stat small{font-size:14px}.hero .float{margin-top:14px}.hero .chip{animation:none;border-radius:10px;box-shadow:0 4px 12px #064e3b20}.hero .chip:hover{transform:translateY(-2px)}
+.waves{height:28px;opacity:.5}.sec{margin:34px 0}.sec h2{color:#087e83}.grid{gap:16px}.card{border-width:1px;border-radius:12px;box-shadow:0 5px 16px #0b52610b}.card .ic{display:inline-grid;place-items:center;width:56px;height:56px;margin-bottom:8px;border-radius:14px;background:linear-gradient(140deg,#d9f7f3,#fff0d6);font-size:32px}.card h3{margin:0}.card:hover{transform:translateY(-3px);box-shadow:0 12px 24px #087ea41b}
+.hero .stat:nth-child(1){background:#ffffff24}.hero-note{font-size:13px!important;opacity:.9}.scene-art{display:block;width:100%;height:100%;object-fit:cover}.scene:has(.scene-art){background:#dff5ee!important}
+.safety-callout{padding:14px 16px;border-left:5px solid var(--a);border-radius:8px;background:#fff2e9;color:#583323}.safety-callout b{color:#a5361e}
+@media(max-width:700px){main{padding:14px}.hero{grid-template-columns:1fr;padding:24px 18px 48px;gap:4px}.hero-art{max-height:220px;grid-row:1}.hero .stats{margin:14px 0}.hero .stat{padding:9px}.hero h1{font-size:32px}}
+:root{--bg:#f3f8f7;--card:#fff;--tx:#18343b;--mu:#526c72;--p:#087e83;--p2:#32b8a8;--a:#d9573f;--g:#21865b;--y:#ffd166;--bd:#d8e9e6;--shadow:0 10px 28px #173f4212}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10232b;--card:#182f38;--tx:#e8f4f3;--mu:#afc4c5;--p:#52c6bf;--p2:#77d9c8;--a:#ff8a70;--g:#5bc58c;--y:#ffda7c;--bd:#2c4b53;--shadow:0 10px 28px #00000030}}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{font-family:"Aptos","Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.65;background:radial-gradient(ellipse at 12% 8%,#d9f3ee 0,transparent 30%),radial-gradient(ellipse at 92% 38%,#fff0d6 0,transparent 25%),var(--bg);color:var(--tx)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) body{background:radial-gradient(ellipse at 12% 8%,#163d42 0,transparent 30%),radial-gradient(ellipse at 92% 38%,#39392e 0,transparent 25%),var(--bg)}}
+header{gap:12px;padding:10px clamp(14px,3vw,30px);border-bottom:1px solid var(--bd);box-shadow:0 4px 18px #173f420a}
+.logo{font-size:19px;color:var(--p);letter-spacing:-.3px}
+nav{gap:6px}
+nav a{padding:8px 12px;border-radius:10px;font-size:14px;transition:background .18s,color .18s}
+nav a:hover,nav a.on{background:var(--p);color:#fff}
+.sos{background:var(--a);padding:9px 16px;box-shadow:0 4px 12px #d9573f2a}
+main{max-width:1160px;padding:clamp(16px,3vw,32px)}
+h1,h2,h3{letter-spacing:-.025em;font-weight:750}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.18}
+h2{font-size:clamp(22px,3vw,29px);line-height:1.25}
+h3{font-size:19px;line-height:1.35}
+.hero{min-height:380px;padding:clamp(24px,4vw,42px);gap:clamp(18px,3vw,34px);border-radius:26px;background:linear-gradient(125deg,#075b67 0%,#087e83 55%,#159a83 100%);box-shadow:0 18px 42px #075b6726}
+.hero h1{font-size:clamp(32px,4.5vw,49px);letter-spacing:-.04em}
+.hero p{font-size:17px;line-height:1.7;color:#f3fffd}
+.hero .stats{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px;gap:10px}
+.hero .stat:first-child{grid-column:auto}
+.hero .stat{padding:14px;background:#ffffff1a;border-color:#ffffff38}
+.hero .stat b{font-size:18px}
+.hero .stat small{font-size:14px;line-height:1.5}
+.hero .chip{color:#174047;font-size:14px;padding:9px 12px}
+.tag{background:var(--y);color:#3f3420;padding:4px 11px;font-size:12px;letter-spacing:.04em}
+.sec{margin:42px 0}
+.sec h2{color:var(--p);margin-bottom:18px}
+.grid{gap:18px}
+.card{padding:20px;border:1px solid var(--bd);border-radius:16px;box-shadow:var(--shadow)}
+.card h3{margin:0;color:var(--tx)}
+.card p{color:var(--mu);font-size:15px;line-height:1.55}
+.card:hover{border-color:var(--p);box-shadow:0 14px 30px #087e831c}
+.card .ic{background:linear-gradient(140deg,#d9f3ee,#fff0d6)}
+.btn{background:var(--p);border-radius:10px;padding:10px 17px;transition:filter .18s,transform .18s}
+.btn:hover,.sos:hover{filter:brightness(.93)}
+.btn:active{transform:translateY(1px)}
+.btn.o{background:var(--a)}.btn.g{background:var(--g)}
+.back{color:var(--p);padding:6px 0}
+.part,.q{border-color:var(--bd);border-radius:14px;padding:15px;background:var(--card)}
+.part{border-style:solid;border-left:4px solid var(--p);box-shadow:var(--shadow)}
+.part.open{background:color-mix(in srgb,var(--p) 7%,var(--card))}
+.part .tx,.ex{color:var(--mu);line-height:1.6}
+.q{border-width:1px;box-shadow:var(--shadow)}
+.opt{border:1.5px solid var(--p);border-radius:9px;padding:8px 14px;transition:background .18s,color .18s}
+.opt:not(.ok):not(.no):hover{background:color-mix(in srgb,var(--p) 10%,var(--card))}
+.opt.ok{background:var(--g);border-color:var(--g);color:#fff}
+.opt.no{background:var(--a);border-color:var(--a);color:#fff}
+.scene{border-color:var(--bd);box-shadow:var(--shadow)}
+.slot{border-color:var(--p);background:var(--card)}
+#chat{border-color:var(--bd);box-shadow:var(--shadow)}
+.m.b{background:#e8f5f2;color:#18343b}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .m.b{background:#24444b;color:#e8f4f3}}
+input[type=text]{border-color:var(--bd)}
+input[type=text]:focus{outline:3px solid color-mix(in srgb,var(--p) 28%,transparent);border-color:var(--p)}
+footer{border-color:var(--bd);color:var(--mu)}
+.safety-callout{border-left-color:var(--a);background:#fff0e9;color:#553b32}
+.safety-callout b{color:#a63d2b}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .safety-callout{background:#3a2a27;color:#f4d8cf}:root:not([data-theme="light"]) .safety-callout b{color:#ffad98}}
+button,a,input{font:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--p2);outline-offset:3px}
+@keyframes hero-sun-float{50%{transform:translateY(-7px)}}
+@keyframes hero-ring-float{50%{transform:translateY(-5px) rotate(5deg)}}
+@keyframes hero-water-shimmer{to{stroke-dashoffset:-40}}
+@keyframes hero-bubbles{to{background-position:0 -54px,18px -78px,32px -45px}}
+.hero-art>circle:nth-of-type(1){transform-box:fill-box;transform-origin:center;animation:hero-sun-float 4s ease-in-out infinite}
+.hero-art>circle:nth-of-type(3),.hero-art>circle:nth-of-type(4){transform-box:fill-box;transform-origin:center;animation:hero-ring-float 3s ease-in-out infinite}
+.hero-art>path:nth-of-type(2){stroke-dasharray:12 8;animation:hero-water-shimmer 5s linear infinite}
+.hero{isolation:isolate}
+.hero::after{content:"";position:absolute;z-index:0;pointer-events:none;inset:0 36% 0 auto;width:90px;opacity:.34;background-image:radial-gradient(circle,#d8fff7 0 3px,transparent 4px),radial-gradient(circle,#d8fff7 0 2px,transparent 3px),radial-gradient(circle,#d8fff7 0 4px,transparent 5px);background-size:45px 54px,58px 78px,72px 45px;background-position:0 0,18px 26px,32px 8px;animation:hero-bubbles 6s ease-in-out infinite alternate}
+.hero-copy,.hero-art,.hero .waves{z-index:1}
+@media(max-width:700px){html{scroll-padding-top:120px}header{gap:8px;padding:8px 12px}.logo{font-size:17px}nav{order:3;flex-basis:100%;gap:3px}nav a{padding:6px 9px;font-size:13px}.hero{min-height:0;padding:18px 17px 38px;gap:0}.hero-art{grid-row:1;width:min(100%,280px);max-height:185px;margin:0 auto -2px}.hero h1{font-size:32px}.hero p{font-size:16px}.hero .stats{grid-template-columns:1fr;gap:8px;margin:12px 0}.hero .stat{padding:10px 12px}.hero .stat b{display:block;font-size:15px;margin:0 0 3px}.hero .stat small{display:block}.hero .float{gap:8px}.hero .chip{flex:1 1 auto}.sec{margin:32px 0}.card{padding:16px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+.svt{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}.svt a{text-decoration:none;padding:10px 16px;border-radius:12px;font-weight:700;background:var(--card);color:var(--tx);border:1px solid var(--bd)}.svt a.on{background:var(--p);color:#fff}
+.svb{border-radius:24px;overflow:hidden;position:relative;color:#fff;padding:clamp(20px,4vw,34px);min-height:200px;display:flex;align-items:center;box-shadow:var(--shadow)}.svb svg{position:absolute;inset:0;width:100%;height:100%}.svb>div{position:relative;max-width:560px}.svb h1{margin:0 0 8px;font-size:clamp(24px,4vw,36px)}.svb p{margin:0}
+.svp{display:flex;gap:5px;margin:18px 0 12px}.svp i{flex:1;height:8px;border-radius:6px;background:var(--bd)}.svp i.d{background:var(--g)}.svp i.c{background:var(--y)}
+.svq{background:var(--card);border:1px solid var(--bd);border-radius:22px;padding:clamp(18px,3vw,30px);box-shadow:var(--shadow);animation:svin .35s}@keyframes svin{from{opacity:0;transform:translateY(12px)}}
+.svi{font-size:50px;width:82px;height:82px;display:grid;place-items:center;border-radius:24px;background:linear-gradient(140deg,#d9f3ee,#fff0d6);margin:6px 0}
+.svq h2{margin:4px 0;color:var(--tx)}.sh{color:var(--mu);margin:0 0 12px;font-size:14px;display:block}
+.svo{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.svc{display:flex;align-items:center;gap:12px;text-align:left;padding:14px;border-radius:16px;border:2px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer;transition:.18s}.svc i{font-style:normal;font-size:32px}.svc:hover{border-color:var(--p);transform:translateY(-2px)}
+.svc.on{border-color:var(--p);background:color-mix(in srgb,var(--p) 12%,var(--card));box-shadow:0 0 0 3px color-mix(in srgb,var(--p) 25%,transparent)}.svc.ok{border-color:var(--g);background:color-mix(in srgb,var(--g) 16%,var(--card))}.svc.no{border-color:var(--a);background:color-mix(in srgb,var(--a) 14%,var(--card))}
+.svs{display:flex;gap:8px}.svs button{flex:1;min-width:0;font-size:36px;padding:10px 2px;border-radius:16px;border:2px solid var(--bd);background:var(--card);cursor:pointer;transition:.18s;filter:grayscale(.8)}.svs button:hover{transform:scale(1.08)}.svs button.on{filter:none;border-color:var(--y);background:color-mix(in srgb,var(--y) 25%,var(--card))}.svs small{display:block;font-size:11px;color:var(--mu)}
+.svf{margin-top:14px;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--y) 22%,var(--card))}
+.svn{display:flex;justify-content:space-between;margin-top:20px}.btn[disabled]{opacity:.45;cursor:not-allowed}
+.svr{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px}.svk{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:var(--shadow)}.svk h3{margin:0 0 8px}
+.svm{height:14px;border-radius:9px;background:var(--bd);overflow:hidden;margin:4px 0 10px}.svm i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--p2),var(--g))}
+.pledge{border:3px dashed var(--y);border-radius:22px;padding:24px;text-align:center;background:linear-gradient(140deg,#fff8e1,#e3f7f3);color:#18343b}
+
+.hero{background:radial-gradient(circle at 88% 12%,#ffe9a866,transparent 26%),radial-gradient(circle at 8% 90%,#7dffe033,transparent 30%),linear-gradient(125deg,#0a86b3 0%,#13aebd 52%,#45d9ae 100%)}
+.hero-art{max-height:340px;filter:drop-shadow(0 18px 22px #04485c40);overflow:visible}
+.hero-art .hs{cursor:pointer;transition:transform .2s;transform-box:fill-box;transform-origin:center}.hero-art .hs:hover{transform:scale(1.1)}
+.hero-art .sunr{transform-origin:455px 78px;transform-box:view-box;animation:hsp 26s linear infinite}@keyframes hsp{to{transform:rotate(360deg)}}
+.hero-art .cl1{animation:hcl 16s ease-in-out infinite alternate}.hero-art .cl2{animation:hcl 22s ease-in-out infinite alternate-reverse}@keyframes hcl{to{transform:translateX(46px)}}
+.hero-art .wv1{animation:hwv 4s linear infinite}.hero-art .wv2{animation:hwv 6s linear infinite reverse}@keyframes hwv{to{transform:translateX(-80px)}}
+.hero-art .bob{animation:hbob 3s ease-in-out infinite}.hero-art .bob2{animation:hbob 2.4s ease-in-out infinite .6s}@keyframes hbob{50%{transform:translateY(-7px)}}
+.hero-art .arm{transform-origin:106px 172px;transform-box:view-box;animation:hwave 1.4s ease-in-out infinite}@keyframes hwave{50%{transform:rotate(-24deg)}}
+.hero-art .dol{transform-box:fill-box;transform-origin:center;animation:hjump 6s ease-in-out infinite;opacity:0}
+@keyframes hjump{0%,48%{transform:translate(0,50px) rotate(-25deg);opacity:0}54%{opacity:1}70%{transform:translate(55px,-118px) rotate(-5deg);opacity:1}88%{transform:translate(125px,10px) rotate(38deg);opacity:1}96%,100%{transform:translate(140px,40px) rotate(42deg);opacity:0}}
+.hero-art .bb{animation:hrise 4s ease-in infinite}.hero-art .b2{animation-delay:1.2s}.hero-art .b3{animation-delay:2.4s}@keyframes hrise{from{opacity:.8}to{transform:translateY(-60px);opacity:0}}
+.hero-art .tw{animation:htw 2.2s ease-in-out infinite}@keyframes htw{50%{opacity:.15}}
+.hero-art .bird{animation:hfly 16s linear infinite}@keyframes hfly{from{transform:translateX(-60px)}to{transform:translateX(640px)}}
+.card .ic{display:grid;place-items:center;width:64px;height:64px;border-radius:18px;margin-bottom:6px;transition:transform .3s}.card:hover .ic{transform:rotate(-8deg) scale(1.12)}
+.grid .card:nth-child(4n+1) .ic{background:linear-gradient(140deg,#cdeffd,#e6f9ff)}.grid .card:nth-child(4n+2) .ic{background:linear-gradient(140deg,#d6f7e3,#f0fff4)}.grid .card:nth-child(4n+3) .ic{background:linear-gradient(140deg,#ffe8c7,#fff6e6)}.grid .card:nth-child(4n) .ic{background:linear-gradient(140deg,#ffd9d3,#fff0ed)}
+.sec{animation:hup .6s both}@keyframes hup{from{opacity:0;transform:translateY(18px)}}
+
+.lsc{position:relative;height:190px;border-radius:26px;overflow:hidden;color:#fff;padding:22px 26px;box-shadow:var(--shadow)}.lsc h1{margin:0;font-size:clamp(22px,4vw,36px);text-shadow:0 2px 6px #0004;max-width:62%}.lsc p{margin:6px 0 0;max-width:60%}
+.lsf{position:absolute;font-size:56px;animation:lsfl 3.4s ease-in-out infinite;filter:drop-shadow(0 4px 4px #0003)}@keyframes lsfl{50%{transform:translateY(-12px) rotate(6deg)}}
+.lsw{position:absolute;left:0;right:0;bottom:0;height:40px;background:repeating-radial-gradient(circle at 50% 100%,#ffffff66 0 12px,transparent 12px 24px);background-size:48px 40px;animation:lsw 5s linear infinite}@keyframes lsw{to{background-position:48px 0}}
+.lsp{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}.lsp a{width:38px;height:38px;border-radius:50%;border:2px solid var(--p);display:grid;place-items:center;font-weight:800;color:var(--tx);text-decoration:none;background:var(--card)}.lsp a.on{background:var(--p);color:#fff}
+.lsk{background:var(--card);border:1px solid var(--bd);border-left:8px solid var(--c);border-radius:16px;padding:12px 14px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start;box-shadow:var(--shadow);transition:.2s}.lsk:hover{transform:translateX(4px)}.lsk i{font-style:normal;font-size:34px}.lsk b{display:block}.lsk span{color:var(--mu);font-size:15px}
+.lsfact{background:linear-gradient(120deg,#fff6d6,#ffe3d6);color:#5a3a1a;border-radius:16px;padding:12px 14px;font-weight:600}
+.lstag{display:inline-block;font-size:12px;font-weight:800;border-radius:99px;padding:2px 10px;color:#fff;margin-bottom:4px}
+.lso{display:block;width:100%;text-align:left;margin-top:6px;padding:9px 12px;border-radius:12px;border:2px solid var(--bd);background:none;color:var(--tx);cursor:pointer}.lso:hover{border-color:var(--p)}.lso.ok{background:var(--g);border-color:var(--g);color:#fff}.lso.no{background:var(--a);border-color:var(--a);color:#fff}
+.lsrow{display:flex;gap:8px}.lsrow .lso{text-align:center}
+@media(max-width:700px){.lsc h1,.lsc p{max-width:100%}.lsf{opacity:.35}}
+</style></head><body>
+<header><div class="logo" onclick="location.hash='home'">🐬 Bơi An Toàn</div>
+<nav id="nav"><a href="#home">Trang chủ</a><a href="#kien-thuc">Kiến thức</a><a href="#tro-choi">Trò chơi</a><a href="#ban-do">Bản đồ</a><a href="#tro-ly">Trợ lý AI</a><a href="#khao-sat-truoc">Khảo sát</a></nav>
+<button class="sos" onclick="document.getElementById('sos').showModal()">🆘 SOS</button></header>
+<dialog id="sos"><h2>🆘 Gặp người đuối nước?</h2><p><b>1.</b> Hét gọi người lớn và nhờ người gọi <b>115</b> (cấp cứu) hoặc <b>114</b> (cứu nạn).<br><b>2.</b> Từ nơi đứng an toàn, ném phao hoặc vật nổi; chỉ đưa gậy nếu không phải cúi/rướn ra mép nước.<br><b>3.</b> <b>Không nhảy xuống nước.</b> Khi nạn nhân lên bờ, làm theo hướng dẫn của tổng đài; chỉ ép tim/thổi ngạt nếu đã được huấn luyện.</p><button class="btn" onclick="this.closest('dialog').close()">Đã hiểu</button></dialog>
+<main id="app"></main>
+<footer><b>Bơi An Toàn</b> · Cùng học cách phòng tránh đuối nước<br>Cấp cứu y tế: 115 · Cứu nạn, cứu hộ: 114</footer>
+<script>
+const $=s=>document.querySelector(s),app=$('#app');let T=null;
+const tf=(s,a,e)=>[s,['Đúng','Sai'],a?0:1,e];
+const L=[
+{t:'Vì sao trẻ dễ bị đuối nước?',ic:'🧒',p:[['🧒','Trẻ còn nhỏ','Trẻ nhỏ có thể gặp nguy hiểm ngay cả ở nơi nước nông.'],['🏞️','Tò mò, thích chơi nước','Ao, hồ, suối hấp dẫn khiến trẻ lại gần bờ.'],['👀','Thiếu người giám sát','Cần người lớn ở gần, tập trung quan sát và không giao việc trông trẻ cho trẻ khác.'],['🌧️','Mùa mưa lũ','Nước dâng nhanh, bờ trơn, dòng chảy xiết.']],q:[tf('Xô, chậu nước đầy cũng có thể gây đuối nước ở trẻ nhỏ.',1,'Trẻ nhỏ có thể gặp nguy hiểm ở nơi nước nông.'),tf('Người đuối nước luôn kêu cứu rất to.',0,'Người gặp nạn có thể không kêu được; hãy luôn giám sát gần và tập trung.'),tf('Cần có người lớn trông khi trẻ ở gần nước.',1,'Giám sát liên tục là một biện pháp quan trọng.')]},
+{t:'Nhận biết nơi nguy hiểm',ic:'⚠️',p:[['🕳️','Ao hồ không rào','Bờ trơn, dốc, dễ trượt chân.'],['🏞️','Suối mùa lũ','Nước đục, chảy xiết, nước lên rất nhanh.'],['🪣','Giếng, bể không nắp','Cần đậy nắp, làm rào chắn.'],['🚧','Biển cấm','Thấy biển cảnh báo thì không lại gần.']],q:[tf('Suối nước trong, nông thì luôn an toàn.',0,'Dòng chảy, đá trơn và mưa thượng nguồn vẫn rất nguy hiểm.'),tf('Giếng, bể nước cần có nắp đậy.',1,'Nắp đậy ngăn trẻ ngã xuống.'),tf('Thấy biển cấm bơi vẫn có thể xuống nếu có bạn đi cùng.',0,'Không tự ý xuống chỗ có biển cấm.')]},
+{t:'Cứu bạn an toàn: Hét – Ném – Gọi',ic:'🛟',p:[['📣','Hét gọi người lớn','Nhờ người cụ thể gọi 115 hoặc 114 và báo địa điểm.'],['🛟','Ném vật nổi từ nơi an toàn','Dùng phao hoặc vật nổi dễ bám; không cúi/rướn người ra mép nước.'],['📞','Gọi trợ giúp','115 là cấp cứu y tế; 114 là cứu nạn, cứu hộ. Làm theo hướng dẫn của tổng đài.'],['🚫','Không xuống nước cứu','Không nhảy xuống, không tự kéo người lên nếu việc đó khiến em gặp nguy hiểm.']],q:[tf('Thấy bạn đuối nước, em nên nhảy xuống cứu ngay.',0,'Hét gọi người lớn, gọi trợ giúp và ném vật nổi từ nơi an toàn.'),tf('Chai nhựa rỗng, đóng nắp có thể giúp bạn nổi.',1,'Chỉ ném khi em đứng vững ở nơi an toàn.'),tf('115 gọi cấp cứu y tế; 114 gọi cứu nạn, cứu hộ.',1,'Hãy nhờ người lớn gọi và nói rõ địa điểm.') ]},
+{t:'Sơ cứu sau khi nạn nhân lên bờ',ic:'❤️',p:[['📣','Gọi cấp cứu 115','Nhờ người lớn gọi ngay và bật loa ngoài để nghe hướng dẫn.'],['👀','Kiểm tra phản ứng và nhịp thở','Chỉ tiếp cận khi khu vực an toàn; làm theo hướng dẫn của tổng đài.'],['❤️','Hồi sức nếu cần','Người đã được huấn luyện thực hiện CPR theo hướng dẫn của tổng đài.'],['🛌','Giữ ấm và theo dõi','Nếu nạn nhân thở bình thường, đặt nằm nghiêng khi phù hợp và chờ nhân viên y tế.']],q:[tf('Cần dốc ngược người nạn nhân để nước chảy ra.',0,'Không dốc nước; gọi cấp cứu và làm theo hướng dẫn sơ cứu.'),tf('Nên giữ ấm cho nạn nhân sau khi lên bờ.',1,'Dùng khăn hoặc áo khô và chờ nhân viên y tế.'),tf('Nên gọi 115 và làm theo hướng dẫn kể cả khi nạn nhân tỉnh lại.',1,'Đuối nước vẫn cần được nhân viên y tế đánh giá.')]}];
+const VID=[
+{t:'Không chơi khu vực nguy hiểm',q:[['Nơi nào em không nên chơi?',['Gần ao không rào','Sân trường'],0,'Ao không rào, suối lũ rất nguy hiểm.'],['Em đi tắm sông cần?',['Đi một mình','Có người lớn biết bơi đi cùng'],1,'Luôn có người lớn đi cùng.']]},
+{t:'Xử lý tình huống khi bạn trượt chân, đuối nước',q:[['Việc đầu tiên khi bạn trượt xuống nước?',['Hét gọi người lớn','Nhảy xuống kéo bạn'],0,'Giữ an toàn cho mình trước.'],['Vật nào nên ném cho bạn?',['Phao hoặc can nhựa','Cục đá'],0,'Vật nổi giúp bạn bám giữ.']]},
+{t:'Sơ cứu tại chỗ sau khi cứu lên bờ',q:[['Sau khi đưa lên bờ cần làm gì?',['Kiểm tra thở, gọi 115','Cho uống nước ngay'],0,'Kiểm tra hô hấp và gọi cấp cứu.'],['Nạn nhân đã thở lại, nên?',['Cho nằm nghiêng, giữ ấm','Bắt chạy bộ'],0,'Nằm nghiêng giữ thông đường thở.']]}];
+const SIT=[
+{t:'Tình huống 1: Quả bóng rơi xuống ao',n:'Quả bóng lăn xuống ao. Bạn A định tự xuống nhặt.',q:[['Em nên làm gì?',['Rủ bạn xuống nhặt nhanh','Ngăn bạn lại, gọi người lớn'],1,'Đồ vật có thể thay thế; không ai nên xuống nước để nhặt.']]},
+{t:'Tình huống 2: Mưa lũ ở suối',n:'Sau cơn mưa, suối nước đục chảy xiết, các bạn rủ qua suối.',q:[['Em nên?',['Không qua, báo người lớn','Qua nhanh cho kịp'],0,'Nước lũ lên rất nhanh.']]},
+{t:'Tình huống 3: Em bé gần bể nước',n:'Em nhỏ đang tò mò nhìn vào bể nước không nắp.',q:[['Em nên?',['Gọi người lớn, nhắc em đứng xa bể','Kệ em chơi'],0,'Báo người lớn ngay; người lớn cần đậy nắp và giám sát trẻ.']]}
+];
+const qh=(q,i)=>`<div class="q"><b>${q[0]}</b><br>${q[1].map((o,j)=>`<button class="opt" onclick="ans(this,${j==q[2]},'${(q[3]||'').replace(/'/g,'’')}')">${o}</button>`).join('')}<div class="ex"></div></div>`;
+window.ans=(b,ok,e)=>{const p=b.parentNode;if(p.dataset.d)return;p.dataset.d=1;b.classList.add(ok?'ok':'no');p.querySelector('.ex').textContent=(ok?'✅ Chính xác! ':'❌ Chưa đúng. ')+e};
+window.tg=e=>e.classList.toggle('open');
+const back=(h='kien-thuc')=>`<button class="back" onclick="location.hash='${h}'">← Quay lại</button>`;
+const card=(ic,t,p,h)=>`<button class="card" onclick="location.hash='${h}'"><div class="ic">${ic}</div><h3>${t}</h3><p>${p}</p></button>`;
+const BL=[
+{t:'Môi trường nước và đuối nước là gì?',d:'Nơi nào quanh em cũng có thể tiềm ẩn nguy cơ.',g:['#0ea5e9','#38e0c4'],e:['💧','🏞️','🪣'],
+k:[['🏘️','Ao, suối, kênh ở làng bản','Thường không có biển cảnh báo và rào chắn, nơi trẻ em hay tụ tập vui chơi.'],['🪣','Xô, chậu, bể, giếng trong nhà','Trẻ nhỏ có thể đuối nước ngay trong xô chậu nước nếu không đậy nắp.'],['🌊','Sông, hồ, biển, bể bơi','Biển có sóng, thủy triều, dòng chảy phức tạp; bể bơi đông người vào mùa hè.'],['⛈️','Lũ lụt','Nước dâng nhanh, chảy xiết, cuốn trôi mọi vật trên đường đi.']],
+f:'Theo WHO, đuối nước là khi nước xâm nhập đường thở gây ngạt thở, có thể tử vong hoặc tổn thương thần kinh nặng. Mỗi năm Việt Nam có trên 2 000 trẻ em tử vong do đuối nước.',
+sa:['Kể tên một vật dụng trong nhà có thể gây đuối nước ở trẻ nhỏ.',['xo','chau','be','gieng','chum','vai','lu','bon'],'xô, chậu, bể, giếng, chum, vại…'],
+tf:[['Chỉ ở sông và biển sâu mới có thể bị đuối nước.',0,'Xô, chậu nước cũng có thể gây đuối nước ở trẻ nhỏ.'],['Ao, suối ở làng bản thường thiếu biển cảnh báo và rào chắn.',1,'Vì vậy cần tránh xa và nhờ người lớn lắp rào.']],
+mc:[['Đuối nước là hiện tượng gì?',['Bị lạnh khi tắm','Nước xâm nhập đường thở gây ngạt thở','Chỉ xảy ra ở biển','Bị cảm nắng'],1,'Đó là khái niệm của WHO.'],['Mùa lũ nguy hiểm vì sao?',['Nước dâng nhanh, chảy xiết','Nước rất trong','Không có sóng','Nước ấm'],0,'Dòng nước xiết có thể cuốn trôi người và vật.']]},
+{t:'Vì sao học sinh bị đuối nước?',d:'Hiểu nguyên nhân để biết cách phòng tránh.',g:['#6366f1','#0ea5e9'],e:['🧒','👀','🤔'],
+k:[['🎂','Tuổi và sự phát triển','Nhóm 1–4 tuổi có tỉ lệ cao nhất (12,9/100 000), tiếp đến 5–9 tuổi (11/100 000), 10–14 tuổi (5,1/100 000).'],['📚','Thiếu kiến thức, kĩ năng','Nhiều bạn bơi giỏi vẫn đuối nước vì không biết tự cứu và cứu bạn an toàn.'],['👀','Thiếu người lớn giám sát','Trẻ bị bỏ mặc hoặc người trông không đủ năng lực, không biết bơi.'],['🌧️','Môi trường nguy cơ và thiên tai','Hố nước không rào, đò quá tải, mưa lũ nước dâng nhanh.']],
+f:'Tỉ lệ trẻ em nam tử vong do đuối nước cao gấp gần 2 lần nữ (10,7 so với 5,4 trên 100 000) vì các bạn nam hiếu động, liều lĩnh hơn.',
+sa:['Ở Việt Nam, nhóm tuổi nào có tỉ lệ tử vong do đuối nước cao nhất?',['1-4','1 - 4','1 den 4','duoi 5','mam non'],'Nhóm 1–4 tuổi.'],
+tf:[['Bơi giỏi thì không bao giờ bị đuối nước.',0,'Thiếu kĩ năng tự cứu và vùng nước lạ vẫn rất nguy hiểm.'],['Trẻ em nam có tỉ lệ đuối nước cao hơn trẻ em nữ.',1,'Cao gần gấp 2 lần.']],
+mc:[['Điều nào KHÔNG phải nguyên nhân gây đuối nước?',['Thiếu giám sát','Ao không có rào chắn','Luôn có người lớn trông nom','Mưa lũ bất ngờ'],2,'Có người lớn giám sát là cách phòng tránh.'],['Học sinh thường đuối nước tập thể khi nào?',['Biết cách ném phao','Nhảy xuống cứu bạn mà không có kĩ năng','Gọi người lớn','Đứng yên trên bờ'],1,'Cần cứu đuối gián tiếp, không nhảy xuống.']]},
+{t:'Nguyên tắc “3 không” khi gần nước',d:'Ba điều em phải luôn nhớ.',g:['#f97316','#ef4444'],e:['🚫','👥','⛈️'],
+k:[['🚫','Không xuống nước','Nếu không biết bơi hoặc khi cơ thể đang mệt mỏi.'],['👥','Không bơi, lội một mình','Luôn có người lớn đi cùng và biết em đi đâu.'],['⛈️','Không bơi khi thời tiết xấu','Không bơi khi sắp hoặc đang mưa to, dông, sét, và không bơi ở nước bẩn.'],['😮‍💨','Mệt hoặc lạnh thì ra khỏi nước','Nổi ngửa để nghỉ rồi từ từ vào bờ.']],
+f:'Những lỗi cần tránh: nhảy cắm đầu, thi bơi nơi không có chỉ dẫn, bơi lúc trời tối, ăn uống khi đang bơi, đi bơi ngay sau khi ăn no, không khởi động.',
+sa:['Số điện thoại cấp cứu y tế là số nào?',['115'],'115 (cấp cứu y tế). Số 111 là tổng đài bảo vệ trẻ em.'],
+tf:[['Em có thể đi bơi ngay sau khi ăn no.',0,'Dễ nôn, ngạt nước, chuột rút.'],['Khi thấy mệt nên nổi ngửa nghỉ rồi từ từ ra khỏi nước.',1,'Đúng, đây là nguyên tắc an toàn.']],
+mc:[['Trời sắp có dông sét, em nên?',['Bơi nhanh cho kịp','Lên bờ, vào nơi an toàn','Bơi ra xa','Nhảy cắm đầu'],1,'Không bơi khi thời tiết xấu.'],['Điều nào thuộc nguyên tắc 3 không?',['Không bơi một mình','Không uống nước','Không đi học','Không tập thể dục'],0,'Không bơi, lội một mình.']]},
+{t:'An toàn ở nhà và ở cộng đồng',d:'Biến nơi em sống thành nơi an toàn.',g:['#22c55e','#0ea5e9'],e:['🏠','🔒','🚧'],
+k:[['🏠','Đuối nước quanh nhà','Hơn 76% trẻ bị đuối nước ở cộng đồng, trong đó 22% ngay quanh nhà, kể cả nhà tắm.'],['🔒','Đậy nắp và gài chốt','Giếng, bể, lu, chum phải có nắp đậy chắc chắn. Nhà có trẻ nhỏ không tích nước trong xô, chậu.'],['🚧','Rào chắn ao, bể bơi','Ao cá, hồ bơi trong nhà phải có rào cẩn thận, kèm biển cảnh báo.'],['🗣️','Nói với gia đình','Cho gia đình biết em đi đâu, làm gì, với ai, trong bao lâu.']],
+f:'Những nơi nguy hiểm: hố khai thác cát, hố lấy đất, hố tôi vôi, cống không nắp, hố cột điện, hồ thủy điện không biển cảnh báo.',
+sa:['Trước khi ra ngoài chơi, em cần báo với gia đình điều gì? (kể 1 ý)',['di dau','lam gi','voi ai','bao lau'],'Đi đâu, làm gì, với ai, trong bao lâu.'],
+tf:[['Giếng, bể chứa nước cần có nắp đậy chắc chắn.',1,'Nắp đậy ngăn trẻ nhỏ ngã xuống.'],['Hố lấy cát không có biển báo vẫn an toàn khi trời nắng.',0,'Hố sâu, nước xoáy rất nguy hiểm dù trời nắng.']],
+mc:[['Ao cá trong gia đình cần có gì?',['Rào chắn chắc chắn','Thêm xô nước','Không cần gì','Cho trẻ chơi'],0,'Rào chắn ngăn trẻ lại gần.'],['Trẻ nhỏ cần được?',['Chơi một mình','Người lớn giám sát thường xuyên','Tự đi vệ sinh gần ao','Ở gần giếng'],1,'Không để trẻ nhỏ một mình gần nước.']]},
+{t:'Đi đò, tắm sông và mùa lũ',d:'Áo phao và sự bình tĩnh là người bạn tốt.',g:['#0891b2','#6366f1'],e:['⛵','🦺','🌧️'],
+k:[['🦺','Trước khi lên đò','Mặc áo phao, không đi khi quá tải hoặc thiếu dụng cụ cứu sinh, không lên xuống từ mạn thuyền.'],['🪑','Khi ở trên đò','Ngồi đúng chỗ, không đùa nghịch, không thò tay chân xuống nước, nhớ vị trí phao.'],['🏞️','Khi tắm sông, hồ','Không nhảy cắm đầu, không rủ nhau đi tắm khi không có người lớn, tránh nước sâu, xiết, xoáy.'],['🌧️','Khi có lũ','Không đi vào nước chảy xiết kể cả khi nước cạn; chuẩn bị phao, can nhựa, vật nổi.']],
+f:'Nhiều vụ đuối nước tập thể xảy ra vì một bạn trượt chân, các bạn khác nắm tay nhau kéo rồi cùng ngã xuống. Hãy nhớ: ném vật nổi và gọi người lớn!',
+sa:['Khi đi đò, em cần mặc gì?',['ao phao','phao'],'Áo phao.'],
+tf:[['Được lên xuống đò từ mạn thuyền cho nhanh.',0,'Làm thuyền tròng trành, dễ ngã.'],['Không nên đi vào vùng nước chảy xiết, kể cả khi nước cạn.',1,'Nước lũ có thể cuốn trôi người.']],
+mc:[['Đò chở quá số người quy định, em nên?',['Vẫn lên','Không lên','Đứng ở mạn đò','Nhảy lên sau cùng'],1,'Quá tải rất dễ lật.'],['Khi nhìn thấy bạn trượt chân xuống nước, cách tốt nhất là?',['Nắm tay nhau kéo','Gọi người lớn, ném vật nổi','Nhảy xuống','Chạy đi'],1,'Không tự đặt mình vào nguy hiểm.']]},
+{t:'Chuột rút khi bơi và cách xử lí',d:'Bình tĩnh là chìa khóa.',g:['#f59e0b','#ef4444'],e:['⚡','🦵','🧘'],
+k:[['⚡','Chuột rút là gì?','Cơ co thắt đột ngột gây đau dữ dội, khó cử động; nguy hiểm khi đang ở dưới nước.'],['🔍','Vì sao bị?','Cơ yếu, vận động quá sức, không khởi động kĩ, mất nước và muối khoáng.'],['🧘','Xử lí khi đang bơi','Bình tĩnh, hô cứu, nắm một tay giơ lên, thả nổi ngửa, không vùng vẫy.'],['✊','Chuột rút ngón tay','Nắm thật chặt bàn tay rồi xòe mạnh các ngón, lặp lại 3–4 lần.']],
+f:'Cơ thể người khi xuống nước sẽ tự nổi. Chỉ cần thả lỏng, ngửa cổ, khua nhẹ tay chân là có thể nổi trên mặt nước.',
+sa:['Khi bị chuột rút dưới nước, em nên thả nổi theo tư thế nào?',['ngua','noi ngua'],'Nổi ngửa.'],
+tf:[['Khi bị chuột rút cần vùng vẫy thật mạnh.',0,'Vùng vẫy làm mất sức và chìm nhanh.'],['Khởi động kĩ trước khi xuống nước giúp phòng chuột rút.',1,'Khởi động giúp cơ ấm và dẻo.']],
+mc:[['Việc đầu tiên khi bị chuột rút dưới nước?',['Hoảng sợ','Bình tĩnh, hô cứu','Lặn sâu','Bơi nhanh'],1,'Bình tĩnh rồi báo người xung quanh.'],['Chuột rút ở ngón tay xử lí bằng cách?',['Nắm chặt rồi xòe mạnh','Cắn ngón tay','Nín thở','Bẻ cong ngón'],0,'Làm lặp lại 3–4 lần.']]},
+{t:'Dòng chảy rút xa bờ và nước xoáy',d:'Nhìn kĩ trước khi xuống nước.',g:['#0e7490','#7c3aed'],e:['🌀','🌊','🏊'],
+k:[['🌊','Dòng chảy rút xa bờ','Dòng nước mạnh từ bờ ra khơi, tốc độ khoảng 0,5–1 m/giây, có khi 2,5 m/giây; không ai bơi ngược được.'],['👀','Cách nhận biết','Mặt nước lặng, ít sóng, màu sậm hoặc đục, có bọt và mảnh vỡ trôi ra xa. Chỗ sóng bạc đầu là chỗ đẩy vào bờ.'],['🏊','Thoát hiểm','Kêu cứu, không bơi ngược dòng, bơi song song bờ hoặc chéo rồi tách khỏi dòng.'],['🌀','Vùng nước xoáy','Nằm sấp dang tay chân, bơi hướng ra ngoài vòng xoáy; không tắm gần chân thác; không nhảy xuống cứu người.']],
+f:'Dấu hiệu bị rơi vào xoáy nước: cảm giác cơ thể bị sụt xuống. Hãy bình tĩnh bơi ra ngoài vòng xoáy.',
+sa:['Khi bị cuốn vào dòng chảy rút xa bờ, em bơi theo hướng nào so với bờ?',['song song','cheo'],'Bơi song song hoặc chéo với bờ.'],
+tf:[['Chỗ mặt biển lặng sóng luôn là chỗ an toàn nhất.',0,'Đó có thể là dòng chảy rút xa bờ.'],['Người trên bờ nên quăng phao, dây và gọi cứu hộ, không bơi vào cứu.',1,'Bơi vào cứu sẽ bị cuốn theo.']],
+mc:[['Dòng chảy rút xa bờ thường có đặc điểm gì?',['Sóng bạc đầu nhiều','Nước phẳng lặng, sậm màu','Rất nông','Nước trong vắt'],1,'Nước phẳng lặng gây hiểu nhầm là an toàn.'],['Khi rơi vào xoáy nước, em nên?',['Bơi vào tâm xoáy','Nằm sấp dang tay chân, bơi ra ngoài','Lặn xuống','Đứng yên'],1,'Giữ bình tĩnh và thoát ra ngoài vòng xoáy.']]},
+{t:'Học bơi an toàn',d:'Biết bơi là có thêm phao cứu sinh.',g:['#06b6d4','#22c55e'],e:['🏊','🛟','💪'],
+k:[['🛟','Lợi ích','Học sinh biết bơi như có thêm phao cứu sinh và đôi mái chèo để tự cứu và hỗ trợ bạn.'],['💪','Phát triển toàn diện','Tăng sức khỏe, thể lực, rèn luyện phẩm chất và tâm lí vững vàng.'],['✅','Biết bơi an toàn (cấp 1)','Bơi ít nhất 25 m, nổi ngửa và đứng nước ít nhất 90 giây, biết cứu đuối gián tiếp.'],['🏫','Học ở nơi an toàn','Có người quản lí, đào tạo, phương tiện cứu hộ và sơ cứu; 1 người giám sát tối đa 10 học viên.']],
+f:'Học bơi không chỉ là bơi giỏi. Em còn cần kĩ năng phòng tránh đuối nước, tự cứu và cứu đuối an toàn.',
+sa:['Biết bơi an toàn cấp 1 cần bơi được ít nhất bao nhiêu mét?',['25'],'Ít nhất 25 m.'],
+tf:[['Biết bơi rồi thì không cần học kĩ năng phòng tránh đuối nước.',0,'Cần cả kĩ năng tự cứu và cứu đuối an toàn.'],['Lớp học bơi cần có người giám sát và dụng cụ cứu hộ.',1,'Đây là yêu cầu bắt buộc.']],
+mc:[['Nổi ngửa, đứng nước ít nhất bao lâu để đạt cấp 1?',['10 giây','30 giây','90 giây','5 phút'],2,'Ít nhất 90 giây.'],['Một người giám sát tối đa bao nhiêu học viên?',['5','10','20','30'],1,'Tối đa 10 học viên.']]},
+{t:'Cứu bạn an toàn: Hét – Ném – Gọi',d:'Cứu người nhưng không bao giờ liều mình.',g:['#ef4444','#f59e0b'],e:['📣','🛟','📞'],
+k:[['📣','Hét to, trấn an','Gọi người lớn đến ngay, động viên người bị nạn bình tĩnh.'],['🛟','Cứu đuối gián tiếp','Dùng phao, can nhựa, quả bóng, gậy, cành cây, dây, quần áo nối nhau để đưa ra cho người bị nạn.'],['📞','Gọi cứu hộ','Gọi 115 hoặc nhờ người lớn gọi, nói rõ địa điểm.'],['⛔','Học sinh không cứu trực tiếp','Không nhảy xuống, không đưa tay cho người đuối nước nắm. Nếu bị nắm, hãy thả tay ra!']],
+f:'Cứu đuối trực tiếp chỉ dành cho người cứu hộ chuyên nghiệp. Với học sinh, an toàn của bản thân là trên hết.',
+sa:['Kể tên một vật em có thể dùng để cứu bạn từ trên bờ.',['gay','phao','day','can nhua','bong','ao','canh','vai','sao'],'Gậy, phao, can nhựa, dây, quần áo…'],
+tf:[['Học sinh biết bơi giỏi được phép nhảy xuống cứu bạn.',0,'Học sinh tuyệt đối không cứu đuối trực tiếp.'],['Khi bạn nắm chặt tay em, em nên thả tay để bảo vệ bản thân.',1,'An toàn của em là trên hết.']],
+mc:[['Cứu đuối gián tiếp là?',['Nhảy xuống bơi tới','Dùng dụng cụ từ trên bờ','Bỏ đi','Nắm tay kéo'],1,'Dùng phao, dây, gậy… từ trên bờ.'],['Bạn ở xa bờ, em nên ném gì?',['Hòn đá','Can nhựa rỗng đóng nắp','Cặp sách đầy sách','Giày'],1,'Vật nổi giúp bạn bám giữ.']]},
+{t:'Sơ cấp cứu ban đầu',d:'Thời gian vàng cứu sống người bị nạn.',g:['#e11d48','#f97316'],e:['❤️','⏱️','🚑'],
+k:[['⏱️','Thời gian là quan trọng nhất','Sơ cấp cứu kịp thời quyết định sự sống và khả năng phục hồi.'],['📞','Người đầu tiên có mặt','Sơ cấp cứu nạn nhân, gọi người trợ giúp, gọi cấp cứu 115.'],['🔤','Nhớ CAB','C: ép tim 30 lần. A: khai thông đường thở (không vác, dốc ngược nạn nhân). B: thổi 2 hơi.'],['🧸','Chỉ thực hành trên mô hình','Không thực hành trên bạn bè. Chỉ làm trên người thật khi có tai nạn.']],
+f:'Dấu hiệu nguy hiểm: mất ý thức, ngưng thở, mất mạch. Làm điều gì đó vẫn tốt hơn không làm gì, nhưng học sinh hãy nhờ người lớn và gọi 115 ngay.',
+sa:['Trong CPR, ép tim bao nhiêu lần trước khi thổi ngạt 2 hơi?',['30'],'30 lần.'],
+tf:[['Cần vác nạn nhân lên vai chạy để nước chảy ra.',0,'Tuyệt đối không vác, dốc ngược người đuối nước.'],['Chỉ thực hành sơ cấp cứu trên mô hình, không thực hành với bạn.',1,'Đúng, để đảm bảo an toàn.']],
+mc:[['CAB trong sơ cấp cứu gồm?',['Ép tim, khai thông đường thở, thổi ngạt','Ăn, ngủ, chơi','Chạy, nhảy, bơi','Gọi, hét, ném'],0,'C – Circulation, A – Airway, B – Breathing.'],['Người đầu tiên có mặt nên gọi số nào?',['115','000','999','1900'],0,'Gọi cấp cứu y tế 115.']]}];
+const L_ICONS=["💧","🧒","🚫","🏠","🦺","🦵","🌀","🏊","🛟","❤️"];
+const V={};
+const heroArt=`<svg class="hero-art" viewBox="0 0 560 380" role="img" aria-labelledby="heroTitle heroDesc"><title id="heroTitle">Vui bên nước an toàn</title><desc id="heroDesc">Bạn nhỏ mặc áo phao bơi trong khu nước có rào chắn, người lớn đứng quan sát, phao cứu sinh nổi bên cạnh và chú cá heo nhảy lên.</desc><defs><linearGradient id="hsk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fdcff"/><stop offset="1" stop-color="#eafcff"/></linearGradient><linearGradient id="hwt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ccbe4"/><stop offset="1" stop-color="#0a84a9"/></linearGradient><radialGradient id="hsn"><stop offset="0" stop-color="#fffbd0"/><stop offset="1" stop-color="#ffd166"/></radialGradient><clipPath id="hcl"><rect x="36" y="228" width="488" height="124" rx="24"/></clipPath></defs>
+<g><rect x="6" y="6" width="548" height="368" rx="38" fill="url(#hsk)"/></g>
+<g class="sunr" stroke="#ffd166" stroke-width="6" stroke-linecap="round"><path d="M455 26v12M455 118v12M403 78h12M495 78h12M418 41l8 8M484 107l8 8M492 41l-8 8M426 107l-8 8"/></g><g><circle cx="455" cy="78" r="33" fill="url(#hsn)"/></g>
+<g class="cl1" fill="#fff"><ellipse cx="110" cy="72" rx="42" ry="16"/><ellipse cx="140" cy="60" rx="28" ry="18"/><ellipse cx="86" cy="64" rx="24" ry="13"/></g><g class="cl2" fill="#fff" opacity=".9"><ellipse cx="290" cy="40" rx="30" ry="11"/><ellipse cx="310" cy="32" rx="20" ry="13"/></g>
+<g transform="translate(0 112)"><g class="bird" fill="none" stroke="#2a6f86" stroke-width="3" stroke-linecap="round"><path d="M0 0q8-9 16 0q8-9 16 0"/><path d="M40 14q6-7 12 0q6-7 12 0"/></g></g>
+<g><path d="M6 214Q110 150 230 196T554 176V240H6Z" fill="#a6e8bd"/><path d="M6 228Q150 188 300 218T554 204V250H6Z" fill="#5fcf92"/></g>
+<g stroke="#0b8f9a" stroke-width="7" stroke-linecap="round"><path d="M58 214V170M120 214V170M182 214V170M244 214V170M306 214V170M368 214V170M430 214V170M492 214V170M58 184H492M58 202H492"/></g>
+<g><rect x="22" y="214" width="516" height="150" rx="30" fill="#f0fbf8"/><rect x="36" y="228" width="488" height="124" rx="24" fill="url(#hwt)"/></g>
+<g clip-path="url(#hcl)"><g class="wv1" fill="none" stroke="#c9f6ff" stroke-width="5" stroke-linecap="round" opacity=".8"><path d="M-80 258q20-12 40 0t40 0q20-12 40 0t40 0q20-12 40 0t40 0q20-12 40 0t40 0q20-12 40 0t40 0q20-12 40 0t40 0q20-12 40 0t40 0q20-12 40 0t40 0q20-12 40 0t40 0"/></g><g class="wv2" fill="none" stroke="#9fe9fb" stroke-width="5" stroke-linecap="round" opacity=".7"><path d="M-80 306q20-10 40 0t40 0q20-10 40 0t40 0q20-10 40 0t40 0q20-10 40 0t40 0q20-10 40 0t40 0q20-10 40 0t40 0q20-10 40 0t40 0q20-10 40 0t40 0q20-10 40 0t40 0"/></g><g class="wv1" fill="none" stroke="#7fdcf2" stroke-width="4" stroke-linecap="round" opacity=".6"><path d="M-80 338q20-8 40 0t40 0q20-8 40 0t40 0q20-8 40 0t40 0q20-8 40 0t40 0q20-8 40 0t40 0q20-8 40 0t40 0q20-8 40 0t40 0q20-8 40 0t40 0q20-8 40 0t40 0"/></g>
+<g fill="#fff" opacity=".75"><circle class="bb" cx="330" cy="336" r="4"/><circle class="bb b2" cx="352" cy="342" r="3"/><circle class="bb b3" cx="490" cy="338" r="5"/><circle class="bb b2" cx="75" cy="340" r="4"/></g></g>
+<g stroke="#fff" stroke-width="3" stroke-linecap="round"><path class="tw" d="M300 246v10M295 251h10"/><path class="tw" d="M468 270v10M463 275h10" style="animation-delay:.8s"/><path class="tw" d="M120 282v10M115 287h10" style="animation-delay:1.4s"/></g>
+<g class="hs" onclick="W('Người lớn luôn ở bên và quan sát khi em ở gần nước!')"><g><circle cx="88" cy="146" r="14" fill="#f4a261"/><path d="M72 142q16-20 32 0z" fill="#ffb703"/><path d="M70 166q18-12 36 0l6 44H64z" fill="#0b8fb8"/><path d="M76 208v20M100 208v20" stroke="#1b3a4b" stroke-width="8" stroke-linecap="round"/><path d="M70 172l-12 20" stroke="#f4a261" stroke-width="7" stroke-linecap="round"/><path class="arm" d="M106 172l22-14" stroke="#f4a261" stroke-width="7" stroke-linecap="round"/><circle cx="83" cy="146" r="1.8" fill="#1b3a4b"/><circle cx="93" cy="146" r="1.8" fill="#1b3a4b"/><path d="M83 152q5 4 10 0" stroke="#1b3a4b" stroke-width="2" fill="none"/></g></g>
+<g class="hs" onclick="W('Biển báo và rào chắn giúp em tránh xa nơi nguy hiểm. Đừng trèo rào nhé!')"><g><rect x="250" y="136" width="104" height="30" rx="10" fill="#ffd166"/><text x="302" y="156" text-anchor="middle" font-size="13" font-weight="800" fill="#6b3d00" font-family="sans-serif">CÓ RÀO CHẮN</text></g></g>
+<g class="hs" onclick="W('Áo phao giúp em nổi, nhưng vẫn cần người lớn trông chừng!')"><g class="bob"><circle cx="250" cy="266" r="16" fill="#f4a261"/><path d="M234 262q16-16 32 0q-16-6-32 0z" fill="#5a3825"/><circle cx="244" cy="266" r="1.8" fill="#1b3a4b"/><circle cx="256" cy="266" r="1.8" fill="#1b3a4b"/><path d="M243 272q7 6 14 0" stroke="#1b3a4b" stroke-width="2.2" fill="none"/><path d="M226 298l-20-10M274 298l20-10" stroke="#f4a261" stroke-width="7" stroke-linecap="round"/><path d="M228 296q22-16 44 0v14h-44z" fill="#ff6b4a"/><path d="M250 284v26" stroke="#fff" stroke-width="4"/><path d="M222 310q7-6 14 0t14 0t14 0t14 0t14 0V322H222Z" fill="#2aa9cc"/></g></g>
+<g class="hs" onclick="W('Phao cứu sinh: ném từ nơi đứng an toàn, không nhảy xuống cứu bạn!')"><g class="bob2"><circle cx="410" cy="290" r="24" fill="none" stroke="#fff" stroke-width="12"/><circle cx="410" cy="290" r="24" fill="none" stroke="#ff6b4a" stroke-width="12" stroke-dasharray="18.85 18.85"/></g></g>
+<g class="hs" onclick="W('Cá heo Bơi An Toàn chào em! Cùng học cách giữ an toàn nhé!')"><g transform="translate(70 300)"><g class="dol"><path d="M0 0C14-26 56-30 84-8C66-10 56-2 40 4 24 10 8 8 0 0Z" fill="#6ec1ff"/><path d="M84-8l22-14-6 18 8 12z" fill="#4aa8f0"/><path d="M36-24l8-14 10 16z" fill="#4aa8f0"/><circle cx="18" cy="-12" r="2.6" fill="#0b2a3c"/><path d="M2-2C14 6 30 6 40 2" stroke="#fff" fill="none" stroke-width="3" opacity=".7"/></g></g></g>
+</svg>`;
+V.home=()=>`<div class="hero"><div class="hero-copy"><span class="tag">HỌC ĐỂ AN TOÀN</span><h1>Vui bên nước, luôn nhớ an toàn</h1><p>Biết bơi rất hữu ích, nhưng không thay thế áo phao, người giám sát hay quy tắc an toàn. Cùng học cách bảo vệ mình và giúp bạn đúng cách.</p><div class="stats"><div class="stat"><b>👀 Người lớn luôn ở bên</b><small>Không tự ý đến gần nước hoặc bơi một mình.</small></div><div class="stat"><b>📣 Hét – Ném – Gọi</b><small>Giúp bạn từ nơi đứng an toàn, không nhảy xuống nước.</small></div></div><div class="float"><button class="chip" onclick="W('Ao hồ không rào, bờ trơn rất dễ trượt chân!')">🕳️ Ao hồ</button><button class="chip" onclick="W('Tránh xa suối, sông và vùng ngập khi mưa lũ!')">🌧️ Mưa lũ</button><button class="chip" onclick="W('Đậy nắp, khóa cửa và giám sát trẻ nhỏ quanh bể nước!')">🪣 Bể nước</button></div><div id="warn" aria-live="polite">👆 Chọn một cảnh báo để tìm hiểu</div></div>${heroArt}<div class="waves"></div></div>
+<div class="sec"><h2>Bắt đầu hành trình an toàn 🌊</h2><div class="grid">${card('📝','Khảo sát ban đầu','Em đã biết gì về an toàn dưới nước?','khao-sat-truoc')}${card('📚','Khám phá kiến thức','Nhận biết nguy cơ, ứng phó và sơ cứu','kien-thuc')}${card('🎮','Học qua trò chơi','Thử sức với các tình huống gần gũi','tro-choi')}${card('🏅','Khảo sát sau bài học','Cùng nhìn lại điều em đã học','khao-sat-sau')}</div></div>
+<div class="sec"><h2>4 thói quen nhỏ, bảo vệ an toàn lớn</h2><div class="grid">${[['🧑‍🧑‍🧒','Luôn có người lớn','Bơi ở nơi được phép, có người lớn giám sát và làm theo hướng dẫn của nhân viên cứu hộ.'],['🦺','Mặc áo phao phù hợp','Mặc áo phao đúng cỡ khi ở trên thuyền hoặc gần vùng nước theo hướng dẫn.'],['🚧','Tránh xa nơi nguy hiểm','Không chơi gần ao hồ, cống rãnh, bờ trơn hay vùng nước lũ.'],['🛟','Giúp bạn từ trên bờ','Hét gọi, ném vật nổi từ nơi an toàn và gọi người lớn/cấp cứu.']].map(x=>`<div class="card" style="cursor:default"><div class="ic">${x[0]}</div><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join('')}</div></div>`;
+window.W=m=>{$('#warn').textContent='⚠️ '+m};
+const KLESSONS=[
+{t:'Môi trường nước và đuối nước là gì?',ic:'💧'},
+{t:'Vì sao học sinh bị đuối nước?',ic:'🧒'},
+{t:'Nguyên tắc “3 không” khi gần nước',ic:'🚫'},
+{t:'An toàn ở nhà và ở cộng đồng',ic:'🏠'},
+{t:'Đi đò, tắm sông và mùa lũ',ic:'🦺'},
+{t:'Chuột rút khi bơi và cách xử lí',ic:'🦵'},
+{t:'Dòng chảy rút xa bờ và nước xoáy',ic:'🌀'},
+{t:'Học bơi an toàn',ic:'🏊'},
+{t:'Cứu bạn an toàn: Hét – Ném – Gọi',ic:'🛟'},
+{t:'Sơ cấp cứu ban đầu',ic:'❤️'}
+];
+V['kien-thuc']=()=>`<h1>📚 Kiến thức</h1><div>${['Bài học thẻ','Nhận diện nguy cơ','Video','Tình huống thực tế'].map((s,i)=>`<button class="btn" style="margin:3px" onclick="document.getElementById('s${i}').scrollIntoView({behavior:'smooth'})">${s}</button>`).join('')}</div>
+<div class="sec" id="s0"><h2>1. Bài học thẻ <span class="tag">${BL.length} bài</span></h2><div class="grid">${BL.map((l,i)=>card(L_ICONS[i],`Bài ${i+1}: ${l.t}`,'Gợi ý kiến thức + bài tập trả lời ngắn, đúng/sai, A B C D','bai-'+(i+1))).join('')}</div></div>
+<div class="sec" id="s1"><h2>2. Nhận diện nguy cơ</h2><div class="grid">${card('🔎','Tìm điểm nguy hiểm','Bấm vào điểm nguy hiểm, có đồng hồ, điểm, gợi ý','nguy-co')}${card('🧩','Em làm cho cảnh an toàn','Đặt nắp, rào, biển báo, phao đúng chỗ','an-toan')}</div></div>
+<div class="sec" id="s2"><h2>3. Video</h2><div class="grid">${VID.map((v,i)=>card('🎬',`Video ${i+1}: ${v.t}`,'Có câu hỏi trắc nghiệm sau video','video-'+(i+1))).join('')}</div></div>
+<div class="sec" id="s3"><h2>4. Phân tích tình huống thực tế</h2><div class="grid">${SIT.map((v,i)=>card('📸',v.t,'Video, ảnh và ghi chú','tinh-huong-'+(i+1))).join('')}</div></div>`;
+const LBC=['#0ea5e9','#22c55e','#ff6b4a','#a855f7','#f59e0b'];
+const lbn=x=>x.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim();
+let LB={i:0,n:0,t:0,sa:0};
+const lbtag=(n,c)=>`<span class="lstag" style="background:${c}">${n}</span>`;
+V.bai=i=>{const l=BL[i-1];if(!l)return back()+'<p>Không tìm thấy bài học này.</p>';LB={i:i-1,n:0,t:0,sa:0};const nx=i%BL.length+1,pv=(i+BL.length-2)%BL.length+1;
+return back()+`<div class="lsc" style="background:linear-gradient(135deg,${l.g[0]},${l.g[1]})"><h1>Bài ${i}: ${l.t}</h1><p>${l.d}</p>${l.e.map((x,j)=>`<span class="lsf" style="right:${6+j*17}%;top:${18+j%2*44}px;animation-delay:${j*.6}s">${x}</span>`).join('')}<div class="lsw"></div></div>
+<div class="lsp">${BL.map((_,j)=>`<a class="${j+1==i?'on':''}" href="#bai-${j+1}">${j+1}</a>`).join('')}</div>
+<div class="two"><section><h2>📖 Gợi ý kiến thức</h2>${l.k.map((k,j)=>`<div class="lsk" style="--c:${LBC[j%5]}"><i>${k[0]}</i><div><b>${k[1]}</b><span>${k[2]}</span></div></div>`).join('')}<div class="lsfact">💡 Em có biết? ${l.f}</div></section>
+<section><h2>✍️ Làm bài tập</h2><div class="bar"><i id="lbr" style="width:0"></i></div><div id="lbs" class="ex">⭐ 0/5 điểm</div>
+<div class="q">${lbtag('Trả lời ngắn','#a855f7')}<br><b>${l.sa[0]}</b><div style="display:flex;gap:8px;margin-top:8px"><input type="text" id="lbin" placeholder="Nhập câu trả lời..." onkeydown="if(event.key=='Enter')lbck()"><button class="btn" onclick="lbck()">Kiểm tra</button><button class="btn g" onclick="lbrv()">Đáp án</button></div><div class="ex" id="lbsr"></div></div>
+${l.tf.map((q,j)=>`<div class="q">${lbtag('Đúng / Sai','#f59e0b')}<br><b>${q[0]}</b><div class="lsrow"><button class="lso" onclick="lbpk(this,'tf',${j},0)">✅ Đúng</button><button class="lso" onclick="lbpk(this,'tf',${j},1)">❌ Sai</button></div><div class="ex"></div></div>`).join('')}
+${l.mc.map((q,j)=>`<div class="q">${lbtag('Trắc nghiệm A B C D','#0ea5e9')}<br><b>${q[0]}</b><div>${q[1].map((o,m)=>`<button class="lso" onclick="lbpk(this,'mc',${j},${m})"><b>${'ABCD'[m]}.</b> ${o}</button>`).join('')}</div><div class="ex"></div></div>`).join('')}</section></div>
+<div style="display:flex;justify-content:space-between;margin:18px 0"><a class="btn" style="text-decoration:none" href="#bai-${pv}">← Bài trước</a><a class="btn" style="text-decoration:none" href="#bai-${nx}">Bài tiếp theo →</a></div>`};
+window.lbup=()=>{const r=$('#lbr');if(!r)return;r.style.width=LB.n/5*100+'%';$('#lbs').textContent=`⭐ ${LB.n}/5 điểm`+(LB.t==5?(LB.n==5?' – Tuyệt vời! 🎉':' – Hoàn thành, hãy đọc lại gợi ý để đạt 5/5!'):'')};
+window.lbsc=ok=>{LB.t++;if(ok)LB.n++;lbup()};
+window.lbpk=(b,t,qi,oi)=>{const p=b.parentNode;if(p.dataset.d)return;p.dataset.d=1;const q=BL[LB.i][t][qi],c=t=='tf'?(q[1]?0:1):q[2],ok=oi==c;b.classList.add(ok?'ok':'no');if(!ok)p.children[c].classList.add('ok');p.nextElementSibling.textContent=(ok?'✅ Chính xác! ':'❌ Chưa đúng. ')+q[t=='tf'?2:3];lbsc(ok)};
+window.lbck=()=>{const q=BL[LB.i].sa,v=lbn($('#lbin').value);if(!v)return;const ok=q[1].some(k=>v.includes(lbn(k)));$('#lbsr').textContent=ok?'✅ Chính xác! '+q[2]:'❌ Chưa đúng, thử lại hoặc bấm Đáp án.';if(ok&&!LB.sa){LB.sa=1;lbsc(true)}};
+window.lbrv=()=>{$('#lbsr').textContent='💡 Đáp án: '+BL[LB.i].sa[2];if(!LB.sa){LB.sa=1;lbsc(false)}};
+const sceneArt=i=>i===1?`<svg class="scene-art" viewBox="0 0 640 360" role="img" aria-label="Minh họa quả bóng ở gần ao và biển cảnh báo"><rect width="640" height="360" fill="#dff4e8"/><circle cx="525" cy="62" r="28" fill="#ffd166"/><path d="M0 188q130-54 260 4t380-6v174H0z" fill="#7bc78e"/><path d="M0 244q130-42 275-3t365-12v131H0z" fill="#42b5ce"/><path d="M0 273q95-26 200 4t210-4 230-6" fill="none" stroke="#b4eee3" stroke-width="11"/><path d="M100 210v93m50-93v93m-50-67h50m-50 34h50" stroke="#865b3c" stroke-width="8"/><path d="M77 203h97" stroke="#865b3c" stroke-width="8"/><path d="M374 210v74m45-74v74m-45-54h45m-45 28h45" stroke="#087e83" stroke-width="7"/><path d="m373 190 24-42 24 42z" fill="#ffd166" stroke="#9b5b19" stroke-width="4"/><path d="M397 160v15m0 7v2" stroke="#583323" stroke-width="5" stroke-linecap="round"/><circle cx="253" cy="225" r="18" fill="#ff6b4a"/><path d="M253 207v36m-18-18h36" stroke="#fff" stroke-width="7"/><path d="M252 247q18 8 34 1" fill="none" stroke="#fff" stroke-width="5"/><rect x="64" y="75" width="206" height="46" rx="22" fill="#fff"/><text x="88" y="105" font-size="21" font-family="sans-serif" font-weight="700" fill="#174a55">KHÔNG XUỐNG AO</text><path d="M316 158q20-20 40 0" fill="none" stroke="#087e83" stroke-width="7" stroke-linecap="round"/></svg>`:i===2?`<svg class="scene-art" viewBox="0 0 640 360" role="img" aria-label="Minh họa giữ khoảng cách an toàn với dòng nước lũ"><rect width="640" height="360" fill="#d9f3f2"/><circle cx="520" cy="66" r="28" fill="#ffd166"/><path d="M0 206 130 140l80 66 124-96 120 98 90-52 96 50v154H0z" fill="#82c99d"/><path d="M0 250q120-48 235-5t230 2 175-12v125H0z" fill="#319fbd"/><path d="M0 284q100-34 210 2t220 0 210-8" fill="none" stroke="#b2ece3" stroke-width="12"/><path d="M90 192v68m44-84v76m-52-54h60m-53 28h47" stroke="#865b3c" stroke-width="8" stroke-linecap="round"/><path d="m106 198 30 30m0-30-30 30" stroke="#ef5b4c" stroke-width="9"/><path d="M95 158h39l-20-30z" fill="#ffb84d" stroke="#9b5b19" stroke-width="4"/><text x="162" y="180" font-size="21" font-family="sans-serif" font-weight="700" fill="#174a55">KHÔNG QUA SUỐI LŨ</text><path d="M450 170v67m45-67v67m-45-49h45m-45 26h45" stroke="#087e83" stroke-width="6"/><circle cx="474" cy="118" r="19" fill="#f4a261"/><path d="M454 145q20-12 40 0l11 48h-62z" fill="#ff6b4a"/><path d="m464 193-10 24m29-24 10 24" stroke="#174a55" stroke-width="7" stroke-linecap="round"/></svg>`:`<svg class="scene-art" viewBox="0 0 640 360" role="img" aria-label="Minh họa gọi cấp cứu và giữ ấm sau khi đưa người lên bờ"><rect width="640" height="360" fill="#e6f4f4"/><path d="M0 264q150-45 300 0t340-4v100H0z" fill="#8acba7"/><rect x="90" y="185" width="460" height="100" rx="25" fill="#f1c27d"/><path d="M118 207h405" stroke="#fff0c8" stroke-width="12" stroke-linecap="round"/><circle cx="225" cy="175" r="22" fill="#f4a261"/><path d="M200 205q25-14 50 0l18 57h-86z" fill="#087ea4"/><path d="m211 260-13 13m41-13 13 13" stroke="#174a55" stroke-width="8" stroke-linecap="round"/><rect x="372" y="113" width="75" height="116" rx="13" fill="#fff" stroke="#087e83" stroke-width="7"/><rect x="383" y="127" width="53" height="70" rx="5" fill="#c9f0e5"/><path d="M410 140v30m-15-15h30" stroke="#ef5b4c" stroke-width="8" stroke-linecap="round"/><circle cx="410" cy="213" r="5" fill="#087e83"/><path d="M475 86q27 10 0 32m13-46q43 24 0 60" fill="none" stroke="#087e83" stroke-width="7" stroke-linecap="round"/><circle cx="126" cy="120" r="34" fill="#ff6b4a"/><circle cx="126" cy="120" r="16" fill="#fff"/><path d="M126 86v18m0 32v18m-34-34h18m32 0h18" stroke="#fff" stroke-width="10"/></svg>`;
+V.video=i=>{const v=VID[i-1];return back()+`<h1>🎬 ${v.t}</h1><div class="scene">${sceneArt(i)}<span class="tag" style="position:absolute;left:14px;bottom:14px">Minh họa an toàn</span></div><h3>Trắc nghiệm sau bài học</h3>${v.q.map(qh).join('')}`};
+V.tinh=i=>{const v=SIT[i-1];return back()+`<h1>${v.t}</h1><div class="two"><div class="scene">${sceneArt(i)}</div><div><div class="part open"><b>📝 Tình huống</b><div class="tx">${v.n}</div></div>${v.q.map(qh).join('')}</div></div>`};
+// risk game
+const SC=[['Ao làng','linear-gradient(#bae6fd,#4ade80 55%,#38bdf8 55%)',[['🕳️','Bờ ao trơn, không rào',1],['🐟','Cá bơi',0],['🪣','Xô nước đầy để gần trẻ',1],['🌳','Cây xanh',0],['🛶','Bè không phao cứu sinh',1],['🏡','Ngôi nhà',0]]],['Suối mùa lũ','linear-gradient(#cbd5e1,#86efac 40%,#a8a29e 40%)',[['🌊','Nước lũ xiết',1],['🪨','Đá rêu trơn',1],['🌈','Cầu vồng',0],['🦆','Vịt',0],['🌧️','Mưa lớn thượng nguồn',1],['⛰️','Núi',0]]],['Ngôi nhà','linear-gradient(#fef3c7,#fcd34d)',[['🪣','Thùng nước không nắp',1],['🛁','Bồn nước đầy',1],['🪑','Ghế',0],['🕳️','Giếng không nắp',1],['🧸','Gấu bông',0],['🌻','Hoa',0]]],['Sân trường','linear-gradient(#bfdbfe,#bbf7d0)',[['🏊','Bể bơi không người trông',1],['⚽','Quả bóng',0],['🪧','Biển báo',0],['🌊','Hố nước sâu sau mưa',1],['🏫','Lớp học',0],['🕳️','Cống hở',1]]]];
+V['nguy-co']=()=>{let lv=0,sc=0,t,found,tot;const o=()=>{clearInterval(T);const s=SC[lv];t=Math.max(12,35-lv*6);found=0;tot=s[2].filter(x=>x[2]).length;
+app.innerHTML=back()+`<h1>🔎 Tìm điểm nguy hiểm – Màn ${lv+1}/4: ${s[0]}</h1><p>⏱ <b id="tm">${t}</b>s · ⭐ <b id="sc">${sc}</b> điểm · Tìm <b>${tot}</b> điểm nguy hiểm · <button class="btn" onclick="H()">💡 Gợi ý (-5)</button></p><div class="scene" style="background:${s[1]}">${s[2].map((x,i)=>`<button class="it" id="i${i}" style="left:${8+(i%3)*30+Math.random()*8}%;top:${12+Math.floor(i/3)*42+Math.random()*8}%" onclick="P(${i})" title="">${x[0]}</button>`).join('')}</div><p id="fb">Bấm vào nơi em thấy nguy hiểm!</p>`;
+T=setInterval(()=>{t--;$('#tm').textContent=t;if(t<=0){clearInterval(T);end(0)}},1000)};
+const end=w=>{clearInterval(T);app.innerHTML=back()+`<div class="card" style="cursor:default;text-align:center"><div class="ic">${w?'🎉':'⏰'}</div><h2>${w?'Em tìm đủ rồi!':'Hết giờ!'}</h2><p>Tổng điểm: ${sc}</p><button class="btn" onclick="NX()">${lv<3?'Màn tiếp theo →':'Chơi lại'}</button></div>`};
+window.NX=()=>{lv=(lv+1)%4;if(!lv)sc=0;o()};
+window.P=i=>{const x=SC[lv][2][i],b=$('#i'+i);if(b.classList.contains('f'))return;if(x[2]){b.classList.add('f');sc+=10+t;found++;$('#fb').textContent='✅ Đúng! '+x[1];if(found==tot)end(1)}else{sc=Math.max(0,sc-5);$('#fb').textContent='❌ '+x[1]+' – không nguy hiểm.'}$('#sc').textContent=sc};
+window.H=()=>{sc=Math.max(0,sc-5);const k=SC[lv][2].findIndex((x,i)=>x[2]&&!$('#i'+i).classList.contains('f'));if(k>=0)$('#fb').textContent='💡 Gợi ý: hãy nhìn gần '+(k<3?'phía trên':'phía dưới')+' của cảnh.';$('#sc').textContent=sc};o()};
+V['an-toan']=()=>{const it=[['🔒','Nắp đậy','Giếng'],['🚧','Rào chắn','Bờ ao'],['⚠️','Biển báo','Bờ suối'],['🛟','Phao','Bể bơi']];let sel=-1,risk=100,done={};
+const r=()=>{app.innerHTML=back()+`<h1>🧩 Em làm cho cảnh an toàn</h1><p>Chọn vật dụng rồi chạm vào vị trí phù hợp (hoặc kéo thả). Thanh nguy cơ sẽ giảm.</p><div class="bar"><i style="width:${risk}%"></i></div><p><b>Nguy cơ: ${risk}%</b> <span id="m"></span></p><div style="display:flex;gap:8px;flex-wrap:wrap;margin:10px 0">${it.map((x,i)=>done[i]?'':`<button class="opt${sel==i?' ok':''}" draggable="true" ondragstart="event.dataTransfer.setData('t',${i})" onclick="S(${i})">${x[0]} ${x[1]}</button>`).join('')}</div><div class="grid">${it.map((x,i)=>`<div class="slot" ondragover="event.preventDefault()" ondrop="D(${i},+event.dataTransfer.getData('t'))" onclick="D(${i},sel)"><b>${i==0?'🕳️':i==1?'🏞️':i==2?'🌊':'🏊'} ${x[2]}</b><br>${done[i]?'✅ '+it[i][0]+' '+it[i][1]:'Đặt vào đây'}</div>`).join('')}</div>${risk==0?'<h2>🎉 Cảnh đã an toàn!</h2>':''}`};
+window.S=i=>{sel=i;r()};window.D=(s,i)=>{if(i<0||done[i])return;if(i==s){done[i]=1;risk-=25;sel=-1;r()}else{r();$('#m').textContent='❌ Chưa hợp lý, thử lại!'}};r()};
+// games
+V['tro-choi']=()=>`<h1>🎮 Trò chơi</h1><div class="grid">${card('⛰️','Chinh phục đỉnh núi','Trả lời đúng để leo lên đỉnh','g-nui')}${card('⏱️','Nhận diện tình huống','Chọn trong 10 giây, mỗi lựa chọn một hệ quả','g-nhan')}${card('🔢','Xử lý tình huống','Sắp xếp các bước cứu bạn','g-xuly')}${card('🔎','Tìm điểm nguy hiểm','Có đồng hồ, điểm, gợi ý','nguy-co')}<div class="card" style="cursor:default;opacity:.7"><div class="ic">🌊</div><h3>Mô phỏng đuối nước</h3><p>Sắp ra mắt</p></div><div class="card" style="cursor:default;opacity:.7"><div class="ic">🦸</div><h3>Cuộc chiến cứu người</h3><p>Sắp ra mắt</p></div></div>`;
+const NQ=[['Số cấp cứu y tế là?',['115','114'],0],['Thấy bạn đuối nước, em nên?',['Hét gọi người lớn, không xuống nước','Nhảy xuống kéo bạn'],0],['Vật nào có thể ném từ nơi an toàn?',['Phao hoặc vật nổi','Cục gạch'],0],['Suối mùa lũ nên?',['Tránh xa, báo người lớn','Lội qua thật nhanh'],0],['Giếng nước cần?',['Có nắp đậy và rào chắn','Để mở'],0]];
+V['g-nui']=()=>{let i=0;const r=()=>{if(i>=NQ.length){app.innerHTML=back('tro-choi')+`<div class="card" style="cursor:default;text-align:center"><div class="ic">🏆</div><h2>Em đã chinh phục đỉnh núi!</h2></div>`;return}const q=NQ[i];app.innerHTML=back('tro-choi')+`<h1>⛰️ Chinh phục đỉnh núi</h1><div class="mtn"><i style="left:${i/NQ.length*90}%">🧗</i></div><p style="text-align:right">🚩 Đỉnh</p><div class="q"><b>${q[0]}</b><br>${q[1].map((o,j)=>`<button class="opt" onclick="N(${j==q[2]})">${o}</button>`).join('')}</div>`};window.N=ok=>{if(ok){i++;r()}else alert('Chưa đúng, thử lại nhé!')};r()};
+V['g-nhan']=()=>{const S=[['Bạn rủ em tắm suối sau mưa lũ. Em chọn?',[['Từ chối, báo người lớn',1,'Tránh xa nước lũ và báo người lớn là lựa chọn an toàn.'],['Đi theo',0,'Dòng nước lũ có thể cuốn người đi; hãy tránh xa.']]],['Bạn rơi xuống ao. Em chọn?',[['Hét gọi, ném phao từ bờ',1,'Gọi người lớn và ném vật nổi khi em đang đứng vững ở nơi an toàn.'],['Nhảy xuống ngay',0,'Không xuống nước; em cũng có thể gặp nguy hiểm.']]]];let i=0,c;const r=()=>{clearInterval(T);if(i>=S.length){app.innerHTML=back('tro-choi')+'<h2>🎉 Hoàn thành!</h2>';return}c=10;const s=S[i];app.innerHTML=back('tro-choi')+`<h1>⏱️ Nhận diện tình huống</h1><h2 id="c" style="color:var(--a)">${c}s</h2><div class="q"><b>${s[0]}</b><br>${s[1].map((o,j)=>`<button class="opt" onclick="K(${j})">${o[0]}</button>`).join('')}<div class="ex" id="r"></div></div>`;T=setInterval(()=>{c--;$('#c').textContent=c+'s';if(c<=0){clearInterval(T);$('#r').textContent='⏰ Hết giờ! Hãy bình tĩnh, gọi người lớn và tránh xa mép nước.';nx()}},1000)};const nx=()=>setTimeout(()=>{i++;r()},2800);window.K=j=>{clearInterval(T);const o=S[i][1][j];$('#r').textContent=(o[1]?'✅ ':'❌ ')+o[2];nx()};r()};
+V['g-xuly']=()=>{const C=['Hét gọi người lớn, nhờ gọi cấp cứu','Ném phao hoặc vật nổi từ nơi đứng an toàn','Báo rõ địa điểm và làm theo hướng dẫn tổng đài','Khi nạn nhân lên bờ, kiểm tra phản ứng và nhịp thở','Hồi sức chỉ khi được huấn luyện hoặc theo hướng dẫn'];let ch=[];const sh=[...C].sort(()=>Math.random()-.5);const r=()=>{app.innerHTML=back('tro-choi')+`<h1>🔢 Các bước ứng phó an toàn</h1><p>Sắp xếp theo thứ tự. Gọi trợ giúp và ném vật nổi có thể diễn ra đồng thời.</p><div>${sh.map(s=>`<button class="opt" ${ch.includes(s)?'disabled style="opacity:.4"':''} onclick="X('${s}')">${s}</button>`).join('')}</div><h3>Thứ tự của em:</h3><ol>${ch.map(s=>`<li>${s}</li>`).join('')}</ol>${ch.length==5?(ch.join()==C.join()?'<h2>🎉 Chính xác!</h2>':'<h2>❌ Chưa đúng</h2><button class="btn" onclick="RX()">Thử lại</button>'):''}`};window.X=s=>{if(ch.includes(s))return;ch.push(s);r()};window.RX=()=>{ch=[];r()};r()};
+// map
+V['ban-do']=()=>back('home')+`<h1>🗺️ Bản đồ khu vực nguy hiểm</h1><p>Minh họa mẫu. Để nhúng bản đồ thật, dán mã iframe từ Google My Maps vào khung bên dưới khi đưa lên website của trường.</p><div class="scene" style="height:360px;background:linear-gradient(120deg,#bbf7d0,#a7f3d0)"><svg viewBox="0 0 600 360" style="width:100%;height:100%"><path d="M0 250 Q150 180 300 240 T600 200 V360 H0Z" fill="#7dd3fc"/><path d="M420 0 Q380 120 460 360" stroke="#38bdf8" stroke-width="22" fill="none"/></svg>${[['🕳️','Ao làng',15,45,'Bờ ao không rào'],['🌊','Suối',70,40,'Nước lũ mùa mưa'],['🪣','Giếng',40,15,'Chưa có nắp đậy'],['🏫','Trường',25,70,'Điểm an toàn']].map(p=>`<button class="it" style="left:${p[2]}%;top:${p[3]}%" onclick="alert('${p[1]}: ${p[4]}')">${p[0]}</button>`).join('')}</div>`;
+// AI
+const KB=[[/115|114|cấp cứu|số/i,'Gọi 115 để cấp cứu y tế, 114 để cứu nạn cứu hộ. Nhờ người lớn gọi, nói rõ địa điểm và làm theo hướng dẫn của tổng đài.','😟'],[/cứu|đuối|chìm/i,'Hét gọi người lớn – Ném phao hoặc vật nổi từ nơi đứng vững, an toàn – Gọi 115/114. Không nhảy xuống nước và không rướn người ra mép nước.','😟'],[/sơ cứu|ép tim|thổi/i,'Gọi 115 và làm theo hướng dẫn của tổng đài. CPR cần được thực hiện bởi người đã được huấn luyện hoặc theo hướng dẫn trực tiếp của nhân viên cấp cứu. Không dốc ngược người để đổ nước.','🤔'],[/suối|lũ|mưa/i,'Mưa lũ có thể làm nước dâng và chảy xiết. Tránh xa sông suối, cống và vùng ngập; tuyệt đối không lội qua dòng nước.','😟'],[/ao|hồ|giếng|bể/i,'Cần rào chắn ao hồ, đậy nắp giếng/bể và giám sát trẻ nhỏ. Không tự ý đến gần vùng nước.','🤔'],[/cảm ơn|hay|giỏi/i,'Em giỏi lắm! Hãy chia sẻ kiến thức an toàn này với người lớn và bạn bè nhé.','🥳']];
+V['tro-ly']=()=>{setTimeout(()=>{window.msgs=[];$('#chat').innerHTML='<div class="m b">Chào em! Mình là Cá Heo An Toàn 🐬. Hỏi mình về phòng chống đuối nước nhé!</div>'},0);
+return back('home')+`<h1>🤖 Trợ lý AI</h1><div style="display:flex;gap:12px;align-items:flex-start"><div class="mascot" id="ms">😀</div><div style="flex:1"><div id="chat"></div></div></div><p>${['Cứu bạn thế nào?','Số cấp cứu?','Suối mùa lũ?','Sơ cứu ra sao?'].map(s=>`<button class="opt" onclick="A('${s}')">${s}</button>`).join('')}</p><div style="display:flex;gap:6px"><input type="text" id="in" placeholder="Nhập câu hỏi..." onkeydown="if(event.key=='Enter')A()"><button class="btn" onclick="MIC()">🎤</button><button class="btn" onclick="A()">Gửi</button></div><label><input type="checkbox" id="rd" checked> Đọc to câu trả lời</label>`};
+window.A=q=>{q=q||$('#in').value.trim();if(!q)return;$('#in').value='';const c=$('#chat');c.innerHTML+=`<div class="m u"></div>`;c.lastChild.textContent=q;const k=KB.find(x=>x[0].test(q))||[0,'Mình chưa hiểu câu này. Em thử hỏi về cứu bạn, sơ cứu, ao hồ, suối lũ nhé!','🤔'];c.innerHTML+=`<div class="m b">${k[1]}</div>`;c.scrollTop=1e5;$('#ms').textContent=k[2];if($('#rd').checked&&window.speechSynthesis){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(k[1]);u.lang='vi-VN';speechSynthesis.speak(u)}};
+window.MIC=()=>{const R=window.SpeechRecognition||window.webkitSpeechRecognition;if(!R)return alert('Trình duyệt chưa hỗ trợ nhập giọng nói.');const r=new R();r.lang='vi-VN';r.onresult=e=>A(e.results[0][0].transcript);r.start()};
+// surveys
+const FC=['😟','🙁','😐','🙂','😄'],FL=['Chưa tự tin','Hơi lo','Bình thường','Khá tự tin','Rất tự tin'];
+const KN=[{id:'k1',ic:'🆘',kn:1,t:'Bạn em bị trượt chân xuống ao. Em làm gì đầu tiên?',o:[['🏊','Nhảy xuống kéo bạn lên',0],['📣','Hét gọi người lớn và ném vật nổi',1],['🏃','Chạy về nhà, không nói ai',0],['🤝','Đưa tay cho bạn nắm',0]],ex:'Hét to gọi người lớn, ném phao hoặc can nhựa. Không nhảy xuống, không đưa tay cho bạn nắm vì có thể bị kéo theo.'},
+{id:'k2',ic:'📞',kn:1,t:'Số điện thoại cấp cứu y tế là số nào?',o:[['1️⃣','113',0],['2️⃣','115',1],['3️⃣','119',0],['🤷','Em chưa biết',0]],ex:'115 là cấp cứu y tế. 111 là tổng đài bảo vệ trẻ em.'},
+{id:'k3',ic:'🌧️',kn:1,t:'Sau mưa lớn, suối nước đục chảy xiết. Em nên làm gì?',o:[['😎','Lội qua cho nhanh',0],['🚫','Tránh xa và báo người lớn',1],['🏊','Tắm cho mát',0],['📸','Lại gần chụp ảnh',0]],ex:'Nước lũ chảy xiết có thể cuốn trôi người, kể cả khi nước nhìn có vẻ cạn.'}];
+const TIN={id:'tin',type:'scale',ic:'💪',t:'Em tự tin thế nào khi cần giữ an toàn gần nước?'};
+const SVQ={truoc:[
+{id:'tam',ic:'🏞️',t:'Em đã từng tắm sông, suối, ao hoặc hồ chưa?',o:[['🙅','Chưa bao giờ'],['🌤️','Thỉnh thoảng'],['🏊','Thường xuyên']]},
+{id:'boi',ic:'🏊',t:'Em biết bơi đến mức nào?',o:[['🫧','Em chưa biết bơi'],['🐟','Bơi được một đoạn ngắn'],['🐬','Em bơi khá tốt']]},
+{id:'ai',ic:'👥',t:'Khi đi chơi hoặc tắm gần nước, em thường đi với ai?',o:[['👨‍👩‍👧','Có người lớn đi cùng'],['🧒','Chỉ với bạn bè'],['🚶','Một mình'],['🏠','Em không đi']]},
+{id:'gan',ic:'🏡',type:'multi',t:'Gần nhà hoặc trường em có nơi nào sau đây?',o:[['🕳️','Ao'],['🌊','Sông, suối'],['🏞️','Hồ, đập'],['🪣','Giếng, bể không nắp'],['✅','Không có nơi nào']]},
+{id:'ao',ic:'🦺',t:'Khi đi đò hoặc thuyền, em có mặc áo phao không?',o:[['🦺','Luôn mặc'],['🤔','Thỉnh thoảng'],['🙈','Ít khi hoặc không bao giờ'],['⛵','Em chưa đi đò, thuyền']]},
+{id:'tn',ic:'😮‍💨',t:'Em đã từng bị sặc nước nhiều hoặc suýt gặp nguy hiểm dưới nước chưa? (không bắt buộc, em có thể chọn không muốn nói)',o:[['😊','Chưa'],['😟','Có một lần'],['😰','Có nhiều lần'],['🤐','Em không muốn nói']]},
+...KN,TIN,
+{id:'muon',ic:'🎯',type:'multi',t:'Em muốn tìm hiểu điều gì nhất trên website này?',o:[['🏊','Cách tự cứu khi rơi xuống nước'],['🛟','Cách cứu bạn an toàn'],['🗺️','Nhận biết nơi nguy hiểm'],['❤️','Sơ cấp cứu'],['🎮','Chơi trò chơi vừa học']]}],
+sau:[
+{id:'ai2',ic:'👥',t:'Lần tới đi chơi gần ao, sông, suối, em sẽ đi với ai?',o:[['👨‍👩‍👧','Có người lớn biết bơi đi cùng'],['🧒','Chỉ với bạn bè'],['🚶','Một mình'],['🏠','Em sẽ không lại gần nước mở']]},
+{id:'ao2',ic:'🦺',t:'Nếu phải đi đò, thuyền, em sẽ làm gì?',o:[['🦺','Mặc áo phao, ngồi đúng chỗ'],['😎','Đi nhanh cho kịp, không cần áo phao'],['⚠️','Lên đò dù đò quá tải']]},
+...KN,TIN,
+{id:'cam',ic:'🤝',type:'multi',t:'Em cam kết sẽ làm những điều nào dưới đây?',o:[['🙋','Báo người lớn khi đi chơi gần nước'],['🦺','Mặc áo phao khi đi đò, thuyền'],['🚫','Không tắm ao, sông, suối khi không có người lớn'],['📣','Hét – Ném – Gọi, không nhảy xuống cứu bạn'],['📞','Nhớ số 115 và 111']]},
+{id:'cs',ic:'📢',type:'multi',t:'Em sẽ chia sẻ những điều đã học cho ai?',o:[['👨‍👩‍👧','Bố mẹ, ông bà'],['🧒','Bạn bè'],['👶','Em nhỏ trong nhà'],['🏫','Thầy cô và cả lớp']]},
+{id:'thich',ic:'💖',type:'multi',t:'Em thích phần nào nhất?',o:[['📚','Bài học'],['🎬','Video, tình huống'],['🎮','Trò chơi'],['🤖','Trợ lý AI']]},
+{id:'dg',type:'star',ic:'🌟',t:'Em chấm cho website này mấy sao?'}]};
+const ST={truoc:{i:0,a:{}},sau:{i:0,a:{}}};
+const bn=k=>`<div class="svb" style="background:linear-gradient(135deg,${k=='truoc'?'#0aa6b7,#3ad1a6':'#f59e0b,#ef7d57'})"><svg viewBox="0 0 800 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><circle cx="680" cy="56" r="34" fill="#ffe08a" opacity=".9"/><circle cx="590" cy="120" r="10" fill="#fff" opacity=".35"/><circle cx="625" cy="88" r="6" fill="#fff" opacity=".4"/><path d="M0 150Q100 120 200 150T400 150T600 150T800 150V200H0Z" fill="#fff" opacity=".22"/><path d="M0 172Q100 142 200 172T400 172T600 172T800 172V200H0Z" fill="#fff" opacity=".3"/><circle cx="730" cy="148" r="26" fill="none" stroke="#fff" stroke-width="12"/><circle cx="730" cy="148" r="26" fill="none" stroke="#ff6b4a" stroke-width="12" stroke-dasharray="20 21.6"/></svg><div><h1>${k=='truoc'?'🧭 Em và nước – trước khi học':'🏅 Em đã học được gì?'}</h1><p>${k=='truoc'?'Vài câu hỏi về chính em: thói quen, nơi em sống và điều em đã biết. Không có đáp án nào bị chê, em cứ trả lời thật nhé!':'Cùng xem em đã tiến bộ thế nào và ghi lại lời cam kết an toàn của riêng em.'} <small style="display:block;margin-top:6px;opacity:.9">Câu trả lời chỉ lưu trên thiết bị của em.</small></p></div></div>`;
+const SS=k=>{setTimeout(()=>sv(k),0);return`<div class="svt"><a class="${k=='truoc'?'on':''}" href="#khao-sat-truoc">📝 Trước khi học</a><a class="${k=='sau'?'on':''}" href="#khao-sat-sau">🏅 Sau khi học</a></div>${bn(k)}<div id="sv"></div>`};
+V['khao-sat-truoc']=()=>SS('truoc');V['khao-sat-sau']=()=>SS('sau');
+const gv=(k,q)=>ST[k].a[q.id];
+const done=(k,q)=>{const v=gv(k,q);return q.type=='multi'?!!(v&&v.length):v!==undefined};
+function sv(k){const Q=SVQ[k],s=ST[k];if(s.i>=Q.length)return fin(k);const q=Q[s.i],v=gv(k,q),el=$('#sv');if(!el)return;let b;
+if(q.type=='scale')b=`<div class="svs">${FC.map((f,j)=>`<button class="${v===j?'on':''}" onclick="SP('${k}',${j})">${f}<small>${FL[j]}</small></button>`).join('')}</div>`;
+else if(q.type=='star')b=`<div class="svs">${[0,1,2,3,4].map(j=>`<button class="${v!==undefined&&j<=v?'on':''}" onclick="SP('${k}',${j})">⭐<small>${j+1}</small></button>`).join('')}</div>`;
+else b=`<div class="svo">${q.o.map((o,j)=>{const on=q.type=='multi'?(v||[]).includes(j):v===j;let c=on?' on':'';if(q.kn&&v!==undefined)c=o[2]?' ok':on?' no':'';return`<button class="svc${c}" onclick="SP('${k}',${j})"><i>${o[0]}</i><span>${o[1]}</span></button>`}).join('')}</div>`;
+const fb=q.kn&&v!==undefined?`<div class="svf">${q.o[v][2]?'✅ Chính xác! ':'💡 Cùng xem nhé: '}${q.ex}</div>`:'';
+el.innerHTML=`<div class="svp">${Q.map((_,j)=>`<i class="${j<s.i?'d':j==s.i?'c':''}"></i>`).join('')}</div><div class="svq"><small class="sh">Câu ${s.i+1}/${Q.length}</small><div class="svi">${q.ic}</div><h2>${q.t}</h2><p class="sh">${q.type=='multi'?'Chọn một hoặc nhiều đáp án':q.type=='scale'||q.type=='star'?'Chạm để chọn':'Chọn một đáp án'}</p>${b}${fb}<div class="svn"><button class="btn g" ${s.i?'':'style="visibility:hidden"'} onclick="SN('${k}',-1)">← Quay lại</button><button class="btn" ${done(k,q)?'':'disabled'} onclick="SN('${k}',1)">${s.i==Q.length-1?'Hoàn thành 🎉':'Tiếp theo →'}</button></div></div>`}
+window.SP=(k,j)=>{const s=ST[k],q=SVQ[k][s.i];if(q.type=='multi'){const a=s.a[q.id]||[],ex=q.o[j][1].startsWith('Không có')||q.o[j][1].startsWith('Em sẽ không');let n=a.includes(j)?a.filter(x=>x!=j):ex?[j]:a.filter(x=>!(q.o[x][1].startsWith('Không có'))).concat(j);s.a[q.id]=n}else{if(q.kn&&s.a[q.id]!==undefined)return;s.a[q.id]=j}sv(k)};
+window.SN=(k,d)=>{ST[k].i+=d;sv(k);scrollTo({top:0,behavior:'smooth'})};
+window.RS=k=>{ST[k]={i:0,a:{}};sv(k)};
+function fin(k){const Q=SVQ[k],a=ST[k].a,kq=Q.filter(q=>q.kn),kn=kq.filter(q=>q.o[a[q.id]][2]).length,tin=a.tin+1;let pre=null;
+try{localStorage.setItem('ks2-'+k,JSON.stringify({kn,tin}));pre=JSON.parse(localStorage.getItem('ks2-truoc'))}catch(e){}
+const bar=(l,n,m)=>`<div>${l} <b>${n}/${m}</b></div><div class="svm"><i style="width:${n/m*100}%"></i></div>`;
+const rev=`<div class="svk"><h3>🧠 Em đã biết gì?</h3>${bar('Câu tình huống đúng',kn,3)}${kq.map(q=>`<p class="ex">${q.o[a[q.id]][2]?'✅':'💡'} ${q.t}<br><b>${q.ic} ${q.o[a[q.id]][1]}</b>${q.o[a[q.id]][2]?'':` → ${q.ex}`}</p>`).join('')}</div>`;
+let html;
+if(k=='truoc'){const ri=[0,2,3,0][a.ai],ro=[0,1,2,0][a.ao],tm=a.tam,sc=tm+(a.boi==0&&tm>0?2:0)+(tm>0?ri:0)+ro+(a.tn<3?a.tn:0)+((a.gan||[]).some(j=>j<4)&&a.boi==0?1:0);
+const lv=sc<=3?['🟢','Em đang giữ an toàn khá tốt','#21865b']:sc<=6?['🟡','Em cần chú ý thêm một vài điều','#c58a00']:['🔴','Em cần thật cẩn trọng gần nước','#d9573f'];
+const t=[];if(tm>0&&a.boi==0)t.push('🫧 Em chưa biết bơi mà từng tắm nước mở: hãy không xuống nước sâu và luôn có người lớn ở gần.');if(a.ai==1||a.ai==2)t.push('👥 Đi cùng bạn bè hoặc một mình rất dễ gặp nguy hiểm. Hãy rủ người lớn biết bơi đi cùng.');if((a.gan||[]).some(j=>j<4))t.push('🏡 Gần nhà hoặc trường có ao, sông, giếng… Hãy tránh xa và nhờ người lớn lắp rào, nắp đậy.');if(a.ao==1||a.ao==2)t.push('🦺 Hãy luôn mặc áo phao khi đi đò, thuyền.');if(a.tn==1||a.tn==2)t.push('💛 Em từng gặp nguy hiểm dưới nước. Hãy kể với người lớn và học kĩ cách tự cứu nhé.');if(!t.length)t.push('🌟 Em có nhiều thói quen an toàn tốt! Hãy chia sẻ cho bạn bè.');
+html=`<div class="svr"><div class="svk" style="border-top:6px solid ${lv[2]}"><h3>${lv[0]} Hồ sơ an toàn của em</h3><p><b>${lv[1]}</b></p>${t.map(x=>`<p class="ex">${x}</p>`).join('')}</div>${rev}<div class="svk"><h3>💪 Sự tự tin</h3><div style="font-size:48px">${FC[tin-1]}</div><p>${FL[tin-1]}. Sau khi học xong, mình sẽ hỏi lại để xem em tiến bộ nhé!</p></div></div><p style="margin-top:16px"><a class="btn" style="text-decoration:none;display:inline-block" href="#kien-thuc">📚 Bắt đầu học ngay</a> <button class="btn g" onclick="RS('truoc')">Làm lại</button></p>`}
+else{const cm=(a.cam||[]).map(j=>Q.find(q=>q.id=='cam').o[j]),cp=pre?kn-pre.kn:0,tp=pre?tin-pre.tin:0;
+html=`<div class="svr">${rev}<div class="svk"><h3>📈 Em tiến bộ thế nào?</h3>${pre?bar('Trước khi học',pre.kn,3)+bar('Sau khi học',kn,3)+`<p><b>${cp>0?'🎉 Em biết thêm '+cp+' tình huống so với lúc đầu!':cp==0?'👏 Em giữ vững kiến thức. Hãy luyện thêm trò chơi nhé!':'📖 Hãy xem lại các bài học để chắc chắn hơn.'}</b></p><p class="ex">Tự tin: ${FC[pre.tin-1]} → ${FC[tin-1]} ${tp>0?'(tăng lên!)':''}</p>`:`<p class="ex">Em chưa làm khảo sát trước nên chưa có số liệu so sánh. <a href="#khao-sat-truoc">Làm khảo sát trước</a></p>`}</div></div>
+<div class="pledge" style="margin-top:16px"><div style="font-size:46px">🏅</div><h2 style="color:#087e83">Thẻ cam kết an toàn</h2><p>Em tên là <input type="text" id="pn" placeholder="Nhập tên của em" oninput="$('#pnm').textContent=this.value||'………'" style="max-width:220px;color:#18343b;background:#fff"> <b id="pnm"></b></p><p><b>Em hứa sẽ:</b></p>${cm.length?cm.map(c=>`<p style="margin:4px">${c[0]} ${c[1]}</p>`).join(''):'<p>Hãy quay lại chọn lời cam kết nhé!</p>'}<p class="ex" style="color:#526c72">Hãy chụp màn hình thẻ này và gửi cho người thân nhé! ${a.dg!==undefined?'· Em chấm website '+'⭐'.repeat(a.dg+1):''}</p></div><p style="margin-top:16px"><button class="btn g" onclick="RS('sau')">Làm lại</button></p>`}
+$('#sv').innerHTML=`<div class="svq" style="text-align:center"><div class="svi" style="margin:auto">🎉</div><h2>Cảm ơn em đã hoàn thành!</h2></div>`+html}
+// router
+function go(){clearInterval(T);const h=location.hash.slice(1)||'home';let f,n;if(V[h])f=V[h];else{const m=h.match(/^(bai|video|tinh)(?:-huong)?-(\d+)$/);if(m){f=V[m[1]];n=+m[2]}}
+if(!f){f=V.home}app.innerHTML=f(n);document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+h||(h.startsWith('khao')&&a.getAttribute('href').includes('khao'))));window.scrollTo(0,0)}
+addEventListener('hashchange',go);go();
+</script></body></html>
